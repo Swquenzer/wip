@@ -1,0 +1,50 @@
+#spotlight {
+	height: 250px;
+	margin-bottom: 10px;
+	background: #D4D4D4;
+	border-bottom: 1px solid gray;
+}
+#spotlight a:link, #spotlight a:visited {
+	color: white;
+	font-weight: bold;
+}
+#spotlight a:hover, #spotlight a:active {
+	text-decoration: underline;
+}
+.spotlightBody {
+}
+.spotlightHeader {
+	float: right;
+	display: block;
+	margin-right: 10px;
+	width: 44%;
+	border-bottom: 2px dashed #96C2FF;
+	margin-bottom: 8px;
+}
+.spotlightHeader h2 {
+	text-align: right;
+	color: #96C2FF;
+	margin: 10px 0px 5px;
+	font-family: Century Gothic, sans-serif;
+	font-weight: 100;
+	letter-spacing: 10px;
+}
+#spotlight img {
+	float: left;
+	height: 150px;
+	width: 300px;
+	margin: 8px 12px 8px 8px;
+}
+#spotlight p {
+	color: white;
+	display: inline;
+}
+#spotlight h3 {
+	color: #C4DDFF;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: 100;
+	text-align: left;
+	font-size: 16px;
+	margin-left: 15px;
+	clear:both;
+}
