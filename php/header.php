@@ -10,7 +10,7 @@
 		$clientRootDir = "/wip/";
 		//Connect to database
 		require SERVER_ROOT_DIR.'/php/db_connect.php';
-		mysqli_select_db($dbHandle, "wip") or die(mysqli_error());
+		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
 		if(isset($_COOKIE['ID_my_site'])) {
 			$username = $_COOKIE['ID_my_site'];
@@ -57,7 +57,7 @@
 			<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/global.css">
 			<script type="text/javascript" src="'.$clientRootDir.'js/global.js"></script>
 		<!--<link rel="icon" type="image/x-icon" href="'.$clientRootDir.'favicon.ico">-->
-			<link href="http://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">
+		<!--<link href="http://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">-->
 	';
 	### If current page is member.php ###
 	if (preg_match("/members/",$_SERVER["SCRIPT_NAME"])) {

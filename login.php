@@ -4,11 +4,10 @@
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span id="contentHeader"><h1>Login</h1></span>
 				<?php
-					try {
 						$continue = true;
 						require "php/db_connect.php";
-						if (!mysqli_select_db($dbHandle, "wip1")) {
-							throw new Exception("Could not connect to database");
+						if (!mysqli_select_db($dbHandle, "wip")) {
+							//throw new Exception("Could not connect to database");
 						}
 						//Check for cookie
 						if(isset($_COOKIE['ID_my_site']) & $continue == true) {
@@ -35,9 +34,10 @@
 								$_POST['email'] = addslashes($_POST['email']);
 							
 							*/
-							$check = mysqli_query($dbHandle, "SELECT * FROM members
-															  WHERE email = '".$_POST['email'].
-															  "'") or die();
+							$query = "SELECT * 
+									  FROM members
+									  WHERE email = '".$_POST['email']."'";
+							$check = mysqli_query($dbHandle,$query); //Error handling
 							//if doesn't exist
 							$check2 = mysqli_num_rows($check);
 							if($check2 == 0 & $continue == true) {
@@ -65,13 +65,14 @@
 								}
 							} //end while
 						} //end if
-					} //end try
 						else { 
+					/*
 					 ### CATCH ERRORS ###
 					 catch(Exception $e) {
 						echo "Error: " . $e->getMessage();
 						echo '<br><a href="'.$_SERVER["PHP_SELF"].'">Try again?</a>';
 					}
+					*/
 						?>
 						<form name="login" action="<?php echo $_SERVER['PHP_SELF']?>" method="post"> 
 						 <table border="0"> 
