@@ -59,55 +59,7 @@
 		<!--<link rel="icon" type="image/x-icon" href="'.$clientRootDir.'favicon.ico">-->
 		<!--<link href="http://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">-->
 	';
-	### If current page is member.php ###
-	if (preg_match("/members/",$_SERVER["SCRIPT_NAME"])) {
-		echo ' 
-			<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/members.css">
-			 ';
-	}
-	if ($_SERVER["SCRIPT_NAME"] == "login.php") {
-		echo '
-			<link rel="stylesheet" type="text/css" media="all" href="css/login.css">
-			 ';
-	}
-	### If current page is index.php ###
-	if ($_SERVER["SCRIPT_NAME"] == $clientRootDir . "index.php") {
-		echo '
-			<!--custom index css-->
-			<style type="text/css">
-			   #colMain {margin-top: 0;}
-			 </style>
-			 <!--Get resources for carousel-->
-			<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-			<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
-			<link rel="stylesheet" type="text/css" media="all" href="css/carousel/skin.css">
-			<link rel="stylesheet" type="text/css" media="all" href="css/index.css">
-			<script type="text/javascript">
-				jQuery(document).ready(function() {
-					jQuery("#mycarousel").jcarousel({
-						
-					});
-				});
-			</script>
-		';
-	}
-	echo '
-		</head>
-		<body>
-		<div id="wrapper">
-			<div id="header">
-				<div id="navBar">
-					<ul id="navList">
-						<li><a href="/wip/index.php">Home</a></li>
-						<li><a href="#">Projects</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
-						<li id="loginLink"><a id="loginLinkA" href="/wip/login.php">Default</a></li>
-					</ul>
-				</div> <!--End Nav Bar-->
-				<h1>A Work in Progress</h1>
-			</div> <!--End Header-->
-		';
+	
 	?>
 	<?php
 		### PHP Functions ###

@@ -1,3 +1,6 @@
 Thoughts and events of WIP website development:
 9/4/13
-	Begin log. Initial design of members page was to allow each member his own personal workstation.php page. This doesn't make sense, since all user-specific content will be generated dynamically from the database. The content on the members page should include links to the various projects the member is working on, which will be retrieved form the database based upon who the user is. 
+	-Begin log
+	-Bug found (register.php): If email in use, warning says "The email [username] is already in use"
+9/5/13	
+	-Bug Found: member pages are found at members/[username]/* but usernames aren't necessarily distinct. Need to either verify that all users have different usernames or change directory name from /[username]/

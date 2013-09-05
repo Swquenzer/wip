@@ -1,4 +1,7 @@
 <?php require 'php/header.php'; ?>
+<!-- Put any page-specific head elements here -->
+</head>
+<?php require 'php/nav.php'; ?>
 		<div id="pageContent">
 			<?php require "php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
