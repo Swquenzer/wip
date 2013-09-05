@@ -32,7 +32,7 @@ function validateForm() {
 	//must be (at least) 1 period, 1 @ sign
 	//last period must come after @ sign, with at least two characters after the period
 	if (posAt<1 || posPeriod<posAt || posPeriod+2>=email.length) {
-		validAsterisk(0);
+		validAsterisk(1);
 		alert('You have not entered a corrent email address');
 		return false;
 	}
