@@ -1,4 +1,23 @@
 <?php require 'php/header.php'; ?>
+<!-- Put any page-specific head elements here -->
+<!--custom index css-->
+	<style type="text/css">
+	   #colMain {margin-top: 0;}
+	 </style>
+	 <!--Get resources for carousel-->
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="css/carousel/skin.css">
+	<link rel="stylesheet" type="text/css" media="all" href="css/index.css">
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery("#mycarousel").jcarousel({
+				
+			});
+		});
+	</script>
+</head>
+<?php require 'php/nav.php'; ?>
 		<div id="spotlight">
 			<ul id="mycarousel" class="jcarousel-skin-ie7">
 			   <li>
