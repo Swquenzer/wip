@@ -25,6 +25,7 @@
 						if(!get_magic_quotes_gpc() & $continue==true) {
 							$_POST['username'] = addslashes($_POST['username']);
 						}
+						###Verify that email is unique
 						$emailCheck = $_POST['email'];
 						$check = mysqli_query($dbHandle, "SELECT email
 												FROM members
@@ -33,9 +34,20 @@
 						$check2 = mysqli_num_rows($check);
 						//if name already exists
 						if ($check2 != 0 & $continue==true) {
-							errors("regUsernameInUse",$continue);
+							errors("regUsernameInUse",$continue); //need email error message
 						}
-						//Check that passwords match
+						###Verify that username is unique
+						$userCheck = $_POST['username'];
+						$check = mysqli_query($dbHandle, "SELECT username
+												FROM members
+												WHERE username='$userCheck'")
+											or errors("queryUnsuccessful",$continue);
+						$check2 = mysqli_num_rows($check);
+						//if name already exists
+						if ($check2 != 0 & $continue==true) {
+							errors("regUsernameInUse",$continue); //need username error message
+						}
+						###Check that passwords match
 						if ($_POST['pass'] != $_POST['pass2'] & $continue==true) {
 							errors("wrongPass",$continue);
 						}

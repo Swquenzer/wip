@@ -1,17 +1,17 @@
 <?php
-		### PHP Functions ###
-		require SERVER_ROOT_DIR.'/php/functions.php';
+	### Server ROOT ###
+	$filePath = dirname(__FILE__);
+	$filePath = str_replace("\php","",$filePath);
+	define('SERVER_ROOT_DIR', $filePath);
+	### Client ROOT ###
+	$clientRootDir = "/wip/";
+	### PHP Functions ###
+	require SERVER_ROOT_DIR.'/php/functions.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 	<head>
 	<?php
-		### Server ROOT ###
-		$filePath = dirname(__FILE__);
-		$filePath = str_replace("\php","",$filePath);
-		define('SERVER_ROOT_DIR', $filePath);
-		### Client ROOT ###
-		$clientRootDir = "/wip/";
 		//Connect to database
 		require SERVER_ROOT_DIR.'/php/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
