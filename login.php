@@ -1,15 +1,15 @@
-<?php require 'php/header.php'; ?>
+<?php include 'php/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <link rel="stylesheet" type="text/css" media="all" href="css/login.css">
 </head>
-<?php require 'php/nav.php'; ?>
+<?php include 'php/nav.php'; ?>
 		<div id="pageContent">
-			<?php require "php/col1.php"; ?>
+			<?php include "php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span id="contentHeader"><h1>Login</h1></span>
 				<?php
 						$continue = true;
-						require "php/db_connect.php";
+						include "php/db_connect.php";
 						if (!mysqli_select_db($dbHandle, "wip")) {
 							//throw new Exception("Could not connect to database");
 						}
@@ -101,4 +101,4 @@
 						<h3><a href="register.php">Click here</a> to begin developing your very own portfolio!</h3>
 					 </p>
 			</div> <!--End col2-->
-			<?php require "php/col3_footer.php"; ?>
+			<?php include "php/col3_footer.php"; ?>

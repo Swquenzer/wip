@@ -6,14 +6,14 @@
 	### Client ROOT ###
 	$clientRootDir = "/wip/";
 	### PHP Functions ###
-	require SERVER_ROOT_DIR.'/php/functions.php';
+	include SERVER_ROOT_DIR.'/php/functions.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 	<head>
 	<?php
 		//Connect to database
-		require SERVER_ROOT_DIR.'/php/db_connect.php';
+		include SERVER_ROOT_DIR.'/php/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
 		if(isset($_COOKIE['ID_my_site'])) {

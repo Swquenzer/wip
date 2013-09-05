@@ -1,4 +1,4 @@
-<?php require 'php/header.php'; ?>
+<?php include 'php/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <!--custom index css-->
 	<style type="text/css">
@@ -17,7 +17,7 @@
 		});
 	</script>
 </head>
-<?php require 'php/nav.php'; ?>
+<?php include 'php/nav.php'; ?>
 		<div id="spotlight">
 			<ul id="mycarousel" class="jcarousel-skin-ie7">
 			   <li>
@@ -45,7 +45,7 @@
 			</ul>
 		</div> <!--End spotlight-->
 		<div id="pageContent">
-			<?php require "php/col1.php"; ?>
+			<?php include "php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span id="contentHeader"><h1>Why WIP?</h1></span>
 				<p>
@@ -60,4 +60,4 @@
 					</ol>
 				</p>
 			</div> <!--End col2-->
-			<?php require "php/col3_footer.php"; ?>
+			<?php include "php/col3_footer.php"; ?>

@@ -1,15 +1,15 @@
-<?php require 'php/header.php'; ?>
+<?php include 'php/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/members.css">
 </head>
-<?php require 'php/nav.php'; ?>
+<?php include 'php/nav.php'; ?>
 		<div id="pageContent">
-			<?php require "../../php/col1.php"; ?>
+			<?php include "../../php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<h1>Members Page: <?php echo "$username"; ?></h1>
 				<?php
 					//Connect to database
-					require '../../php/db_connect.php';
+					include '../../php/db_connect.php';
 					mysqli_select_db($dbHandle, "wip") or die(mysqli_error());
 					//Check cookies for login info
 					if(isset($_COOKIE['ID_my_site'])) {
@@ -41,4 +41,4 @@
 					}
 				?>
 			</div> <!--End col2-->
-			<?php require "../../php/col3_footer.php"; ?>
+			<?php include "../../php/col3_footer.php"; ?>
