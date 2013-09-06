@@ -1,8 +1,8 @@
-<?php include 'php/header.php'; ?>
+<?php include '../../php/header.php'; ?>
 <!-- Put any page-specific head elements here -->
-<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/members.css">
+<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'../../css/members.css">
 </head>
-<?php include 'php/nav.php'; ?>
+<?php include '../../php/nav.php'; ?>
 		<div id="pageContent">
 			<?php include "../../php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
