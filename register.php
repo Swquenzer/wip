@@ -84,25 +84,33 @@
 					 echo '
 					 <h1>Register</h1>
 					 <p>
-					 <form onsubmit="return validateForm();" name="register" action="';
-					 echo htmlentities($_SERVER['PHP_SELF']); ?>
-					 " method="post">
-					 <table border="0">
-					 <tr><td><label>Username:</label></td><td>
-					 <input type="text" name="username" maxlength="32">
-					 </td></tr>
-					 <tr><td><label>Email Address:</label></td><td>
-					 <input type="text" name="email" maxlength="64">
-					 </td></tr>
-					 <tr><td><label>Password:</label></td><td>
-					 <input type="password" name="pass" maxlength="32">
-					 </td></tr>
-					 <tr><td><label>Confirm Password:</label></td><td>
-					 <input type="password" name="pass2" maxlength="32">
-					 </td></tr>
-					 <tr><th colspan=2><input type="submit" name="submit" 
-					value="Register"></th></tr> </table>
-					 </form>
+					 ';
+					 ?>
+					 <form id="globalForm" onsubmit="return validateForm();" name="register" action=
+												<?php echo htmlentities($_SERVER['PHP_SELF']); ?>
+												" method="post">
+						<fieldset>
+							<div id="globalFormContainer">
+								<p>
+								<label>Username:</label>
+								<input type="text" name="username" placeholder="5-15 characters" maxlength="32">
+								</p>
+								<p>
+								<label>Email Address:</label>
+								<input type="text" name="email" placeholder="Your Email Address" maxlength="64">
+								</p>
+								<p>
+								<label>Password:</label>
+								<input type="password" name="pass" maxlength="32">
+								</p>
+								<p>
+								<label>Confirm Password:</label>
+								<input type="password" name="pass2" maxlength="32">
+								</p>
+								<input type="submit" name="submit" value="Register">
+							</div>
+						</fieldset>
+					</form>
 					 <?php
 					}
 					?> 

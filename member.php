@@ -1,6 +1,6 @@
 <?php include '../../php/header.php'; ?>
 <!-- Put any page-specific head elements here -->
-<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'../../css/members.css">
+<link rel="stylesheet" type="text/css" media="all" href="../../css/members.css">
 </head>
 <?php include '../../php/nav.php'; ?>
 		<div id="pageContent">
