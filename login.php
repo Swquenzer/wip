@@ -78,22 +78,22 @@
 					}
 					*/
 						?>
-						<form name="login" action="<?php echo $_SERVER['PHP_SELF']?>" method="post"> 
-						 <table border="0"> 
-						 <tr><td colspan=2></td></tr> 
-						 <tr><td><label>Email Address:</label></td><td> 
-						 <input type="text" name="email" maxlength="40"> 
-						 </td></tr> 
-						 <tr><td><label>Password:</label></td><td> 
-						 <input type="password" name="pass" maxlength="50"> 
-						 </td></tr> 
-						 <tr><td colspan="2" align="right"> 
-						 <input type="submit" name="submit" value="Login"> 
-						 </td></tr> 
-						 </table> 
-						 </form> 
-						 <br>
-						 <?php 
+						<form id="globalForm" name="login" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+							<fieldset>
+								<div id="globalFormContainer">
+									<p>
+									<label>Email Address:</label>
+									<input type="text" name="email" placeholder="Your Email Address" maxlength="32" required="required">
+									</p>
+									<p>
+									<label>Password:</label>
+									<input type="password" name="pass" maxlength="32">
+									</p>
+									 <input type="submit" name="submit" value="Login"> 
+								</div>
+							</fieldset>
+						</form>
+						<?php 
 						} //end else
 					?> 
 					 <h1>Not a member yet?</h1>
