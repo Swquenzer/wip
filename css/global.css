@@ -1,7 +1,7 @@
 /* Main CSS */
 body {
 	margin: 0;
-	background: #4773BA;
+	background: #dc8;
 }
 #wrapper {
 	width: 980px;
@@ -11,12 +11,16 @@ body {
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-bottom: 10px;
-	background: #D4D4D4;
+	background: beige;
+	
 	-webkit-border-radius: 2px 2px 0px 0px;
     border-radius: 2px 2px 0px 0px;
 }
 #header {
 	padding-bottom: 30px;
+	/*
+	border-top: #C4BCAD dashed 1px;
+	border-bottom: #C4BCAD dashed 1px; */
 }
 #header h1 {
 	position: relative;
@@ -77,12 +81,12 @@ body {
 /* ### End Navigation Bar ### */
 
 #pageContent {
-	background: white;
+	background: #eec;
 }
 #colMain {
 	width: 566px;
-	margin-top: 27px;
-	padding: 10px 10px;
+	min-height: 701px;
+	padding: 10px 10px 10px 10px;
 	float: left;
 	background: white;
 	padding-bottom: 50px;
@@ -115,7 +119,7 @@ body {
 	width: 187px;
 	padding: 5px 5px 20px 5px;
 	float: left;
-	background: #D4D4D4;
+	background: #eec;
 }
 .sideBarProjects {
 	height: 150px;

@@ -25,7 +25,7 @@
 					<div class="spotlightHeader">
 						<h2>Spotlight</h2>
 					</div>
-					<img src="gfx/green.gif">
+					<img src="gfx/spot.jpg">
 					<p>About my artwork and stuff! About my artwork and stuff! About my artwork and stuff! About my artwork and stuff! About my artwork and stuff! About my artwork and stuff! </p>
 				</div>	
 					<h3>Featured Artist: <a href="#">Stephen Quenzer</a></h3>
