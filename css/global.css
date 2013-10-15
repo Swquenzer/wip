@@ -254,6 +254,9 @@ h6 {
 	font-size: 36px;
 }
 #about h3 {
+	margin: auto;
+	margin-bottom: 15px;
+	width: 80%;
 	text-align: center;
 	color: black;
 	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
@@ -262,18 +265,18 @@ h6 {
 	font-weight: 100;
 	background: beige;
 	padding: 20px;
-}
-#test {
-	display: inline-block;
-	//background: #78A4CC;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;	
 }
 #about  p {
+	margin-top: 15px;
 	color: #4F481C;
 	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
 #about ul{
 	list-style-type: none;
-	//margin-right: 40px;
+	padding: 20px 0px 20px 40px;
 	padding-right: 40px;
 	background: #FCFAED;
 }
