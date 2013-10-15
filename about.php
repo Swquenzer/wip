@@ -14,6 +14,7 @@
 								<p>
 									The Imagination Den is made for you to show off your mad skills, share them with others, and boost your emerging talents with the help of your new network of like-minded creatavists. This is your new portfolio-building paradise, where you can interact with thousands of other artists, authors, poets, programmers, and all who are entranced by the possibilities of our imagination.
 								</p>
+								<hr/>
 								<ul>
 									<li><h4>Create:</h4>
 									<p>Build your own personal portfolio through the creation of individual projects, which might range from a day-long watercolor study of the human form to a 6-month collaborative venture to build a 3D replica of New York City.</p>

@@ -242,7 +242,7 @@ h6 {
 #about {
 	margin: 20px auto 0 auto;
 	padding-bottom: 30px;
-	width: 80%;
+	width: 90%;
 	border-top: 1px solid #D4D4D4;
 	border-bottom: 1px solid #D4D4D4;
 }
@@ -256,7 +256,7 @@ h6 {
 #about h3 {
 	margin: auto;
 	margin-bottom: 15px;
-	width: 80%;
+	width: 70%;
 	text-align: center;
 	color: black;
 	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
@@ -265,6 +265,8 @@ h6 {
 	font-weight: 100;
 	background: beige;
 	padding: 20px;
+	border-left: 1px solid #C9BF81;
+	border-right: 1px solid #C9BF81;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;	
@@ -279,6 +281,11 @@ h6 {
 	padding: 20px 0px 20px 40px;
 	padding-right: 40px;
 	background: #FCFAED;
+	border-left: 1px solid #DED59B;
+	border-right: 1px solid #DED59B;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;	
 }
 #about li {
 	margin-bottom: 20px;
@@ -295,6 +302,6 @@ h6 {
 	color: #506D87;
 }
 hr {
-	width: 75%;
+	width: 70%;
 	background: #404040;
 }
