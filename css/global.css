@@ -242,7 +242,7 @@ h6 {
 #about {
 	margin: 20px auto 0 auto;
 	padding-bottom: 30px;
-	width: 80%;
+	width: 90%;
 	border-top: 1px solid #D4D4D4;
 	border-bottom: 1px solid #D4D4D4;
 }
@@ -250,29 +250,58 @@ h6 {
 	text-align: center;
 	font-family: ‘Arial Black’, Gadget, sans-serif;
 	color: #093963; 
-	margin-bottom: 0;
 	line-height: 10px;
+	font-size: 36px;
 }
 #about h3 {
-	text-align: left;
-	color: #506D87;
-	font-family: ‘Arial Black’, Gadget, sans-serif;
+	margin: auto;
+	margin-bottom: 15px;
+	width: 70%;
+	text-align: center;
+	color: black;
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 	font-style: italic;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 100;
-	
+	background: beige;
+	padding: 20px;
+	border-left: 1px solid #C9BF81;
+	border-right: 1px solid #C9BF81;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;	
 }
 #about  p {
-	color: #4F450A;
+	margin-top: 15px;
+	color: #4F481C;
+	font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
 }
 #about ul{
 	list-style-type: none;
+	padding: 20px 0px 20px 40px;
+	padding-right: 40px;
+	background: #FCFAED;
+	border-left: 1px solid #DED59B;
+	border-right: 1px solid #DED59B;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;	
+}
+#about li {
+	margin-bottom: 20px;
 }
 #about ul h4 {
+	display: block;
 	font-weight: bolder;
-	color: black;
+	color: #093963; 
 }
 #about ul p {
-	line-height: 1em;
-	font-family: serif;
+	margin: 5px;
+	line-height: 1.5em;
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	color: #506D87;
+}
+hr {
+	width: 70%;
+	background: #404040;
 }
