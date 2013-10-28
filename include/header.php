@@ -61,7 +61,7 @@
 			<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/global.css">
 			<script type="text/javascript" src="'.$clientRootDir.'js/global.js"></script>
 		<!--<link rel="icon" type="image/x-icon" href="'.$clientRootDir.'favicon.ico">-->
-		<!--<link href="http://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">-->
+		<link href="http://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet" type="text/css">
 	';
 	
 	?>
