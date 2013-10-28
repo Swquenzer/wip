@@ -1,17 +1,17 @@
-<?php if(!include 'php/header.php') {
+<?php if(!include 'include/header.php') {
 		throw new Exception("Failed to load header.php");
 	}
  ?>
 <!-- Put any page-specific head elements here -->
 </head>
-<?php include 'php/nav.php'; ?>
+<?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "php/col1.php"; ?>
+			<?php include "include/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<?php
 					$continue = true;
 					### Connect to DB ###
-					include "php/db_connect.php"; 
+					include "include/db_connect.php"; 
 					if(!mysqli_select_db($dbHandle, "wip")) {
 						echo "Could not connect to database";
 					}
@@ -116,4 +116,4 @@
 					?> 
 				</p>
 			</div> <!--End col2-->
-			<?php include "php/col3_footer.php"; ?>
+			<?php include "include/col3_footer.php"; ?>

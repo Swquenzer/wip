@@ -1,7 +1,7 @@
 <?php
 	### Server ROOT ###
 	$filePath = dirname(__FILE__);
-	$filePath = str_replace("\php","",$filePath);
+	$filePath = str_replace("\include","",$filePath);
 	define('SERVER_ROOT_DIR', $filePath);
 	### Client ROOT ###
 	$clientRootDir = "/wip/";
@@ -13,7 +13,7 @@
 	<head>
 	<?php
 		//Connect to database
-		include SERVER_ROOT_DIR.'/php/db_connect.php';
+		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
 		if(isset($_COOKIE['ID_my_site'])) {
