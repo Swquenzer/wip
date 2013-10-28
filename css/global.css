@@ -85,7 +85,7 @@ body {
 }
 #colMain {
 	width: 655px;
-	min-height: 650px;
+	min-height: 705px;
 	padding: 10px 10px 10px 10px;
 	float: left;
 	background: white;
@@ -118,13 +118,13 @@ body {
 #colSides {
 	margin-left: 10px;
 	width: 284px;
-	padding: 5px 5px 20px 5px;
+	padding: 5px 5px 0px 5px;
 	float: left;
 	background: #eec;
 }
 .sideBarProjects {
 	height: 200px;
-	margin: 40px 5px 40px 5px;
+	margin: 40px 5px 10px 5px;
 	background: white;
 	
 	-webkit-border-radius: 3px;
@@ -152,7 +152,7 @@ body {
 	margin-top: 20px;
 }
 #footer {
-	height: 50px;
+	min-height: 100px;
 	clear: both;
 	background: #2D4469;
 	font-size: 14px;
