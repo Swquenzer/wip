@@ -45,7 +45,7 @@
 			</ul>
 		</div> <!--End spotlight-->
 		<div id="pageContent">
-			<?php include "include/col1.php"; ?>
+			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span id="contentHeader"><h1>Why WIP?</h1></span>
 				<p>

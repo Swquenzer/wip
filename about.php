@@ -3,7 +3,7 @@
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "include/col1.php"; ?>
+			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<h1>What are we?</h1>
 				<div id="about">

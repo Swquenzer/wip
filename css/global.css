@@ -84,8 +84,8 @@ body {
 	background: #eec;
 }
 #colMain {
-	width: 566px;
-	min-height: 701px;
+	width: 655px;
+	min-height: 705px;
 	padding: 10px 10px 10px 10px;
 	float: left;
 	background: white;
@@ -116,14 +116,15 @@ body {
 	font-family: sans-serif;
 }
 #colSides {
-	width: 187px;
-	padding: 5px 5px 20px 5px;
+	margin-left: 10px;
+	width: 284px;
+	padding: 5px 5px 0px 5px;
 	float: left;
 	background: #eec;
 }
 .sideBarProjects {
-	height: 150px;
-	margin: 10px 5px 10px 5px;
+	height: 200px;
+	margin: 40px 5px 10px 5px;
 	background: white;
 	
 	-webkit-border-radius: 3px;
@@ -132,18 +133,26 @@ body {
 }
 .sideBarProjects h4 {
 	display: block;
+	position: relative;
+	bottom: 20px;
 	color: #081C47;
 	text-align: left;
-	padding: 5px 5px 5px 10px;
-	background: #D9BF4E;
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-weight: 400;
+	padding: 5px 5px 5px 30px;
+	background: #E6D89E;
 	border-bottom: 1px solid #C9B249;
+	
+	-webkit-border-radius: 3px 3px 0px 0;
+	-moz-border-radius: 3px 3px 0px 0;
+	border-radius: 30px 3px 0px 0;
 }
 #belowCol {
 	clear:both;
 	margin-top: 20px;
 }
 #footer {
-	height: 50px;
+	min-height: 100px;
 	clear: both;
 	background: #2D4469;
 	font-size: 14px;
