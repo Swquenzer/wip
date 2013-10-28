@@ -6,7 +6,7 @@
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "include/col1.php"; ?>
+			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<?php
 					$continue = true;

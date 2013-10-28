@@ -3,7 +3,6 @@
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "include/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<h1>Main Header</h1>
 				<p>Content goes here!</p>

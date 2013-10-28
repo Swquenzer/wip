@@ -4,7 +4,7 @@
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "include/col1.php"; ?>
+			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span id="contentHeader"><h1>Login</h1></span>
 				<?php
