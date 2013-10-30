@@ -64,9 +64,9 @@
 						}
 						//Insert information into database
 						if ($continue==true) {
-							$insert =  "INSERT INTO members (username, email, password)
-										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "');";
-							echo $insert;
+						$current = date("Y-m-d H:i:s");
+							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
+										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
 							if(!mysqli_query($dbHandle,$insert)) {
 								echo "Query did not work correctly";
 							}

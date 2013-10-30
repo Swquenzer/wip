@@ -56,14 +56,18 @@
 									errors("wrongPass",$continue);
 								} elseif ($continue == true) {
 									//Get username from user with correct email
-									$getUsernameQuery = "SELECT username FROM members WHERE email='".$_POST['email']."'";
-									$getUsernameResult = mysqli_query($dbHandle,$getUsernameQuery);
+									$query = "SELECT username FROM members WHERE email='".$_POST['email']."'";
+									$getUsernameResult = mysqli_query($dbHandle,$query);
 									$usernameArray = mysqli_fetch_array($getUsernameResult);
-									
-									//if login ok, add cookie
+									//If login ok, add cookie
 									$hour = time() + 3600;
 									setcookie('ID_my_site', $usernameArray[0], $hour);
 									setcookie('Key_my_site', $_POST['pass'],$hour);
+									//Update "last_seen" in db
+									$current = date("Y-m-d H:i:s");
+									$query = "UPDATE members SET last_seen='".$current."' WHERE email='".$_POST['email']."'";
+									//dLog($query);
+									mysqli_query($dbHandle,$query); //Error Handling
 									//redirect to members area
 									header("Location: ".$clientRootDir."members/".$usernameArray[0]."/workstation.php");
 								}
