@@ -1,4 +1,6 @@
 <?php
+	date_default_timezone_set('America/New_York');
+	$current = date("Y-m-d H:i:s");
 	### Server ROOT ###
 	$filePath = dirname(__FILE__);
 	$filePath = str_replace("\include","",$filePath);
@@ -23,7 +25,6 @@
 								   WHERE username = '".$username."'");
 			while($info = mysqli_fetch_array($check)) {
 				if ($pass != $info['password']) {
-					echo "Made it in!";
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -32,6 +33,9 @@
 						</script>
 						 ';
 				} else {
+					//Update "last_seen" in db
+					$query = "UPDATE members SET last_seen='".$current."' WHERE username='".$username."'";
+					mysqli_query($dbHandle,$query); //Error Handling
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){

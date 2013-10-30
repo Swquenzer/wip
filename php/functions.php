@@ -42,7 +42,7 @@ function dLog($message) {
 	//get current file contents
 	$contents = file_get_contents($log);
 	//Append new contents onto new line
-	$contents.= $message . "\r\n";
+	$contents.= "[".date("g:i a")."]:" .$message . "\r\n";
 	file_put_contents($log, $contents);
 }
 ?>

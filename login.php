@@ -63,11 +63,6 @@
 									$hour = time() + 3600;
 									setcookie('ID_my_site', $usernameArray[0], $hour);
 									setcookie('Key_my_site', $_POST['pass'],$hour);
-									//Update "last_seen" in db
-									$current = date("Y-m-d H:i:s");
-									$query = "UPDATE members SET last_seen='".$current."' WHERE email='".$_POST['email']."'";
-									//dLog($query);
-									mysqli_query($dbHandle,$query); //Error Handling
 									//redirect to members area
 									header("Location: ".$clientRootDir."members/".$usernameArray[0]."/workstation.php");
 								}
