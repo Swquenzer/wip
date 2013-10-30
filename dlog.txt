@@ -1,0 +1,2 @@
+UPDATE members SET last_seen=2013-10-30 16:07:35 WHERE email=jack@pandora.gov
+UPDATE members SET last_seen=2013-10-30 16:07:53 WHERE email=jack@pandora.gov

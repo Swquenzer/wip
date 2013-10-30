@@ -35,5 +35,14 @@ function errors($errorType,&$continue) {
 					break;
 			}
 			echo '<br><a href="'.$_SERVER["PHP_SELF"].'">Try again?</a>';
-		}
+}
+//Simple debugging log
+function dLog($message) {
+	$log = "dlog.txt";
+	//get current file contents
+	$contents = file_get_contents($log);
+	//Append new contents onto new line
+	$contents.= $message . "\r\n";
+	file_put_contents($log, $contents);
+}
 ?>
