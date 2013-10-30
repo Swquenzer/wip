@@ -64,7 +64,7 @@
 						}
 						//Insert information into database
 						if ($continue==true) {
-							//$current holds current time in SQL DATETIME format (initialized in header.php)
+							//Note: $current holds current time in SQL DATETIME format (initialized in header.php)
 							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
 										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
 							if(!mysqli_query($dbHandle,$insert)) {
