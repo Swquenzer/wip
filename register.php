@@ -18,12 +18,6 @@
 
 					if(isset($_POST['submit'])) {
 						### Form submitted, run code ##
-						//If any fields are left blank
-						/*
-						if(!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2']) {
-							errors("emptyForm",$continue);
-						}
-						*/
 						//only matters if magic quotes are enabled
 						if(!get_magic_quotes_gpc() & $continue==true) {
 							$_POST['username'] = addslashes($_POST['username']);
@@ -92,20 +86,20 @@
 						<fieldset>
 							<div id="globalFormContainer">
 								<p>
-								<label>Username:</label>
-								<input type="text" name="username" placeholder="5-15 characters" maxlength="32" required="required">
+									<label>Username:</label>
+									<input type="text" name="username" placeholder="5-15 characters" maxlength="32" required="required" autofocus>
 								</p>
 								<p>
-								<label>Email Address:</label>
-								<input type="text" name="email" placeholder="Your Email Address" maxlength="64" required="required">
+									<label>Email Address:</label>
+									<input type="text" name="email" placeholder="Your Email Address" maxlength="64" required="required">
 								</p>
 								<p>
-								<label>Password:</label>
-								<input type="password" name="pass" maxlength="32" required="required">
+									<label>Password:</label>
+									<input type="password" name="pass" maxlength="32" required="required">
 								</p>
 								<p>
-								<label>Confirm Password:</label>
-								<input type="password" name="pass2" maxlength="32" required="required">
+									<label>Confirm Password:</label>
+									<input type="password" name="pass2" maxlength="32" required="required">
 								</p>
 								<input type="submit" name="submit" value="Register">
 							</div>

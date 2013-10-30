@@ -82,7 +82,7 @@
 								<div id="globalFormContainer">
 									<p>
 									<label>Email Address:</label>
-									<input type="text" name="email" placeholder="Your Email Address" maxlength="32" required="required">
+									<input type="text" name="email" placeholder="Your Email Address" maxlength="32" required="required" autofocus>
 									</p>
 									<p>
 									<label>Password:</label>

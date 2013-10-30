@@ -24,7 +24,7 @@
 								<h2>Admin Area</h2> 
 								<h3>Create new portfolio</h3>
 								<p>
-									<a href="portfolio.php">Click here to create a new portfolio!</a>
+									<a href="newportfolio.php">Click here to create a new portfolio!</a>
 								</p>
 								<h3>List of current portfolios</h3>
 								<ol>

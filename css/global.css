@@ -185,7 +185,7 @@ body {
 	-webkit-box-shadow: inset 0px 7px 7px 0px rgba(0, 0, 0, .1);
     box-shadow: inset 0px 7px 7px 0px rgba(0, 0, 0, .1);
 }
-/* Registration Form */
+/* Global Form Styles */
 #globalForm form {
 	display: block;
 }
@@ -233,6 +233,9 @@ body {
 	padding: 8px 4px;
 	margin: 0px 1px;
 	display: block;
+}
+#globalForm input[type="radio"] {
+	display: inline;
 }
 #globalForm input[type="text"],#globalForm input[type="password"] {
 	width: 50%;
