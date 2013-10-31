@@ -5,10 +5,10 @@
 		<div id="pageContent">
 			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<h1>What are we?</h1>
+				<span class="outsideShadow"><h1>What are we?</h1></span>
 				<div id="about">
 								<h2>Sit down.</h2> 
-								<h3>Grab a cold drink, focus your mind, and create something cool.</h3>
+								<h3>Grab a cold drink, focus your mind, and create something cool.</h3></span>
 								<hr/>
 								<span id="test">
 								<p>

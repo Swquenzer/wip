@@ -1,5 +1,4 @@
 <body>
-
 	<div id="header"><span id="headWrapper">
 		<div id="navBar">
 			<ul id="navList">

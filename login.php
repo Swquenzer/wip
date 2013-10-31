@@ -5,7 +5,7 @@
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<span id="contentHeader"><h1>Login</h1></span>
+				<span class="outsideShadow"><h1>Login</h1></span>
 						<?php 
 						$continue = true;
 						//If user already logged in, redirect to member's page
@@ -66,7 +66,7 @@
 					<?php 
 						//} //end else
 					?> 
-					 <h1>Not a member yet?</h1>
+					 <span class="outsideShadow"><h1>Not a member yet?</h1></span>
 					 <p>
 						<h3><a href="register.php">Click here</a> to begin developing your very own portfolio!</h3>
 					 </p>

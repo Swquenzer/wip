@@ -4,7 +4,7 @@
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<h1>Main Header</h1>
+				<span class="outsideShadow"><h1>Main Header</h1></span>
 				<p>Content goes here!</p>
 			</div> <!--End col2-->
 			<?php include "include/col3_footer.php"; ?>

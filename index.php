@@ -47,7 +47,7 @@
 		<div id="pageContent">
 			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<span id="contentHeader"><h1>Why WIP?</h1></span>
+				<span class="outsideShadow"><h1>Why WIP?</h1></span>
 				<p>
 					<ol>
 						<li><a href="#">Inspiration</a></li>

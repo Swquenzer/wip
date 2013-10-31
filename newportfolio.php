@@ -21,7 +21,7 @@
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<h1>Portfolio Form</h1>
+				<span class="outsideShadow"><h1>Portfolio Form</h1></span>
 				<form id="globalForm" onsubmit="return validateForm();" name="portfolio" action=
 												<?php echo htmlentities($_SERVER['PHP_SELF']); ?>
 												" method="post">

@@ -5,7 +5,7 @@
 <?php include '../../include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<h1>Members Page: <?php echo "$username"; ?></h1>
+				<span class="outsideShadow"><h1>Members Page: <?php echo "$username"; ?></h1><span class="outsideShadow">
 				<?php
 					//Connect to database
 					include '../../include/db_connect.php';
@@ -21,7 +21,7 @@
 								header("Location: ../../login.php");
 							} else { ?>
 								<div id="adminArea">
-								<h2>Admin Area</h2> 
+								<span class="outsideShadow"><h2>Admin Area</h2></span>
 								<h3>Create new portfolio</h3>
 								<p>
 									<a href="../../newportfolio.php">Click here to create a new portfolio!</a>
