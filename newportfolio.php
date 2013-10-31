@@ -1,10 +1,21 @@
 <?php include 'include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <style>
+	#globalForm label {
+		display: inline;
+		width: auto;
+		margin-right: 10px;
+	}
+	#globalForm input[name="portName"] {
+		width: 63%;
+	}
 	#globalForm input[type="submit"] {
-	width: 50%;
-	margin: auto;
-}
+		width: 50%;
+	}
+	#globalForm input[type="checkbox"] {
+		position: relative;
+		top: 11px;
+	}
 </style>
 </head>
 <?php include 'include/nav.php'; ?>
@@ -21,17 +32,15 @@
 									<input type="text" name="portName" placeholder="Speed Drawing" maxlength="32" required="required" autofocus>
 								</p>
 								<p>
-									<label>Description: (optional)</label>
-									<input type="text" name="portDescription" placeholder="What type of portfolio will this be?" maxlength="64">
+									<label>Description: (optional)</label> <br><br>
+									<textarea cols="60" rows="5" name="portDescription" placeholder="What type of portfolio will this be?"></textarea>
 								</p>
 								<p>
-								<label> Visibility:</label> <br>
-									<p>
+								<label> Visibility:</label> <br><br>
 										<input type="radio" name="visibility" value="public" checked="checked">
 										Public <br>
 										<input type="radio" name="visibility" value="private">
 										Private
-									</p>
 								</p>
 								<p>
 									<label>Initialize portfolio with new project: </label>
