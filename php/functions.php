@@ -3,7 +3,7 @@
 ###	Content: PHP Functions			
 ###	Author: Stephen Quenzer
 ### Date Created: May 18, 2013
-### Date Modified: May 18, 2013
+### Date Modified: Oct 31, 2013
 ######################################################################
 
 //Error Handling
@@ -37,10 +37,10 @@ function errors($errorType,&$continue) {
 					dLog('No account exists with that email');
 					break;
 				default:
-					dLog('An error occured.');
+					dLog('An error occurred.');
 					break;
 			}
-			echo '<br><a href="'.$_SERVER["PHP_SELF"].'">Try again?</a>';
+			echo '<br>';
 }
 //Simple debugging log
 function dLog($message) {
