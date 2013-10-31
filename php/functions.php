@@ -52,13 +52,16 @@ function dLog($message) {
 	file_put_contents($log, $contents);
 }
 //If user is logged in (a cookie is set), return true
-function cookieCheck($dbHandle) { //Do I need to selec db again?
+function cookieCheck($dbHandle) { 
+	mysqli_select_db($dbHandle, "wip"); //Error Handling
 	if(isset($_COOKIE['ID_my_site'])) {
+		global $cookie,$username,$pass;
+		$cookie = true;
 		$username = $_COOKIE['ID_my_site'];
 		$pass = $_COOKIE['Key_my_site'];
 		$check = mysqli_query($dbHandle,   "SELECT * FROM members
-											WHERE email = '$username'")
-				or errors("queryUnsuccessful"); //Proper error handling
+											WHERE username = '$username'")
+				or dLog("Query Error"); //Proper error handling
 		while($info = mysqli_fetch_array($check)) {
 			if($pass != $info['password']) { 
 				return false;

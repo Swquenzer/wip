@@ -1,4 +1,5 @@
 <?php
+	$cookie;$username;$pass;
 	date_default_timezone_set('America/New_York');
 	$current = date("Y-m-d H:i:s");
 	### Server ROOT ###
@@ -18,9 +19,11 @@
 		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
-		if(isset($_COOKIE['ID_my_site'])) {
-			$username = $_COOKIE['ID_my_site'];
-			$pass = $_COOKIE['Key_my_site'];
+		dLog("about to go into cookieCheck");
+		if(cookieCheck($dbHandle)) {
+			dLog("username: ".$username." password: ".$pass);
+			//$username = $_COOKIE['ID_my_site'];
+			//$pass = $_COOKIE['Key_my_site'];
 			$check = mysqli_query($dbHandle,"Select * FROM members
 								   WHERE username = '".$username."'");
 			while($info = mysqli_fetch_array($check)) {
@@ -47,6 +50,7 @@
 				}
 			}
 		} else {
+			$cookie = false;
 			echo '
 						<script type="text/javascript">
 							window.onload = function(){
