@@ -1,29 +1,22 @@
-<?php if(!include 'php/header.php') {
+<?php if(!include 'include/header.php') {
 		throw new Exception("Failed to load header.php");
 	}
  ?>
 <!-- Put any page-specific head elements here -->
 </head>
-<?php include 'php/nav.php'; ?>
+<?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "php/col1.php"; ?>
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<?php
 					$continue = true;
 					### Connect to DB ###
-					include "php/db_connect.php"; 
+					include "include/db_connect.php"; 
 					if(!mysqli_select_db($dbHandle, "wip")) {
 						echo "Could not connect to database";
 					}
 
 					if(isset($_POST['submit'])) {
 						### Form submitted, run code ##
-						//If any fields are left blank
-						/*
-						if(!$_POST['username'] | !$_POST['pass'] | !$_POST['pass2']) {
-							errors("emptyForm",$continue);
-						}
-						*/
 						//only matters if magic quotes are enabled
 						if(!get_magic_quotes_gpc() & $continue==true) {
 							$_POST['username'] = addslashes($_POST['username']);
@@ -64,9 +57,9 @@
 						}
 						//Insert information into database
 						if ($continue==true) {
-							$insert =  "INSERT INTO members (username, email, password)
-										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "');";
-							echo $insert;
+							//Note: $current holds current time in SQL DATETIME format (initialized in header.php)
+							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
+										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
 							if(!mysqli_query($dbHandle,$insert)) {
 								echo "Query did not work correctly";
 							}
@@ -74,7 +67,7 @@
 							$sourceDir = getcwd()."\\members\\".$_POST['username'];
 							$destFile = $sourceDir."\\workstation.php";
 							if(mkdir($sourceDir,0777) & copy(getcwd()."/member.php", $destFile)){
-								echo '<h1>Registered</h1>
+								echo '<span class="outsideShadow"><h1>Registered</h1></span>
 									 '.$destFile.'
 									  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
 									 ';
@@ -82,7 +75,7 @@
 						}
 					} else {
 					 echo '
-					 <h1>Register</h1>
+					<span class="outsideShadow"><h1>Register</h1></span>
 					 <p>
 					 ';
 					 ?>
@@ -92,20 +85,20 @@
 						<fieldset>
 							<div id="globalFormContainer">
 								<p>
-								<label>Username:</label>
-								<input type="text" name="username" placeholder="5-15 characters" maxlength="32" required="required">
+									<label>Username:</label>
+									<input type="text" name="username" placeholder="5-15 characters" maxlength="32" required="required" autofocus>
 								</p>
 								<p>
-								<label>Email Address:</label>
-								<input type="text" name="email" placeholder="Your Email Address" maxlength="64" required="required">
+									<label>Email Address:</label>
+									<input type="text" name="email" placeholder="Your Email Address" maxlength="64" required="required">
 								</p>
 								<p>
-								<label>Password:</label>
-								<input type="password" name="pass" maxlength="32" required="required">
+									<label>Password:</label>
+									<input type="password" name="pass" maxlength="32" required="required">
 								</p>
 								<p>
-								<label>Confirm Password:</label>
-								<input type="password" name="pass2" maxlength="32" required="required">
+									<label>Confirm Password:</label>
+									<input type="password" name="pass2" maxlength="32" required="required">
 								</p>
 								<input type="submit" name="submit" value="Register">
 							</div>
@@ -116,4 +109,4 @@
 					?> 
 				</p>
 			</div> <!--End col2-->
-			<?php include "php/col3_footer.php"; ?>
+			<?php include "include/col3_footer.php"; ?>
