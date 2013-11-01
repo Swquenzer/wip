@@ -1,28 +1,11 @@
 <?php include '../../include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <link rel="stylesheet" type="text/css" media="all" href="../../css/members.css">
-<script>
-	window.onload = function () {
-		var currentPortsUL = document.getElementById("currentPorts");
-		<?php 
-			$portResult = getPortList($dbHandle,$username);
-			//$row = mysqli_fetch_array($portResult,MYSQLI_NUM);
-			while($row = mysqli_fetch_array($portResult,MYSQLI_NUM)) {
-				echo "
-						var portName = '".$row[0]."';
-						var li = document.createElement('li');
-						li.innerHTML = portName;
-						currentPortsUL.appendChild(li);
-					 ";
-			}
-		?>
-	}
-</script>
 </head>
 <?php include '../../include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<span class="outsideShadow"><h1>Members Page: <?php echo "$username"; ?></h1><span class="outsideShadow">
+				<span class="outsideShadow"><h1>Members Page: <?php echo "$username"; ?></h1></span>
 				<?php
 					//Connect to database
 					include '../../include/db_connect.php';
@@ -38,7 +21,6 @@
 								header("Location: ../../login.php");
 							} else { ?>
 								<div id="adminArea">
-								<h2>Admin Area</h2>
 								<a href="../../newportfolio.php">
 									<h3 class="hBold">Create new portfolio</h3>
 								</a>
@@ -60,4 +42,20 @@
 					}
 				?>
 			</div> <!--End col2-->
+			<script>
+					//Onload handler conflicts with onload function used in header.php
+					var currentPortsUL = document.getElementById("currentPorts");
+					<?php 
+						$portResult = getPortList($dbHandle,$username);
+						//$row = mysqli_fetch_array($portResult,MYSQLI_NUM);
+						while($row = mysqli_fetch_array($portResult,MYSQLI_NUM)) {
+							echo "
+									var portName = '".$row[0]."';
+									var li = document.createElement('li');
+									li.innerHTML = portName;
+									currentPortsUL.appendChild(li);
+								 ";
+						}
+					?>
+			</script>
 			<?php include "../../include/col3_footer.php"; ?>
