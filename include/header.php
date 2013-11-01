@@ -20,9 +20,9 @@
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
 		if(cookieCheck($dbHandle)) {
-			$check = mysqli_query($dbHandle,"Select * FROM members
+			$result = mysqli_query($dbHandle,"Select * FROM members
 								   WHERE username = '".$username."'");
-			while($info = mysqli_fetch_array($check)) {
+			while($info = mysqli_fetch_array($result)) {
 				if ($pass != $info['password']) {
 					echo '
 						<script type="text/javascript">

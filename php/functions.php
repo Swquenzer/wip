@@ -72,5 +72,10 @@ function cookieCheck($dbHandle) {
 	}
 	return false;
 }
+function getPortList($handle, $user) {
+	$query = 	"SELECT portfolio.name FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
+	$qResults = mysqli_query($handle, $query);
+	return $qResults;
+}
 ?>
 

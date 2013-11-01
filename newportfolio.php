@@ -31,7 +31,6 @@
 		$queryMemID = "SELECT id FROM members WHERE username='".$username."'";
 		$qReturn = mysqli_query($dbHandle,$queryMemID);
 		$idArray = mysqli_fetch_array($qReturn);
-		dLog($idArray[0]);
 		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
 					VALUES (".$idArray[0].",'".$_POST["portName"]."','".$_POST["portDescription"]."','".$current."',".$vis.")";
 		if(!mysqli_query($dbHandle,$insert)) {

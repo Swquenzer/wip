@@ -364,3 +364,16 @@ hr {
 	width: 70%;
 	background: #404040;
 }
+.hBold {
+	display: block;
+	padding: 5px;
+	background: #E6D89E; 
+}
+a:link .hBold, a:visited .hBold {
+	text-decoration: none;
+	background: #E6D89E; 
+}
+a:hover .hBold, a:active .hBold {
+	text-decoration: none !important;
+	background: #E6E19E;
+}

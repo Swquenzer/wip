@@ -10,5 +10,6 @@
 	<div id="footer">
 		&copy Stephen Quenzer 2013
 	</div>
+	<?php mysqli_close($dbHandle); ?>
 	</body>
 </html>
