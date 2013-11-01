@@ -1,7 +1,10 @@
 <?php
+	$cookie;$username;$pass;
+	date_default_timezone_set('America/New_York');
+	$current = date("Y-m-d H:i:s");
 	### Server ROOT ###
 	$filePath = dirname(__FILE__);
-	$filePath = str_replace("\php","",$filePath);
+	$filePath = str_replace("\include","",$filePath);
 	define('SERVER_ROOT_DIR', $filePath);
 	### Client ROOT ###
 	$clientRootDir = "/wip/";
@@ -13,17 +16,14 @@
 	<head>
 	<?php
 		//Connect to database
-		include SERVER_ROOT_DIR.'/php/db_connect.php';
+		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
-		if(isset($_COOKIE['ID_my_site'])) {
-			$username = $_COOKIE['ID_my_site'];
-			$pass = $_COOKIE['Key_my_site'];
-			$check = mysqli_query($dbHandle,"Select * FROM members
+		if(cookieCheck($dbHandle)) {
+			$result = mysqli_query($dbHandle,"Select * FROM members
 								   WHERE username = '".$username."'");
-			while($info = mysqli_fetch_array($check)) {
+			while($info = mysqli_fetch_array($result)) {
 				if ($pass != $info['password']) {
-					echo "Made it in!";
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -32,6 +32,9 @@
 						</script>
 						 ';
 				} else {
+					//Update "last_seen" in db
+					$query = "UPDATE members SET last_seen='".$current."' WHERE username='".$username."'";
+					mysqli_query($dbHandle,$query); //Error Handling
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -43,6 +46,7 @@
 				}
 			}
 		} else {
+			$cookie = false;
 			echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -61,7 +65,7 @@
 			<link rel="stylesheet" type="text/css" media="all" href="'.$clientRootDir.'css/global.css">
 			<script type="text/javascript" src="'.$clientRootDir.'js/global.js"></script>
 		<!--<link rel="icon" type="image/x-icon" href="'.$clientRootDir.'favicon.ico">-->
-		<!--<link href="http://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">-->
+		<link href="http://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet" type="text/css">
 	';
 	
 	?>

@@ -1,14 +1,14 @@
-<?php include 'php/header.php'; ?>
+<?php include 'include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 </head>
-<?php include 'php/nav.php'; ?>
+<?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			<?php include "php/col1.php"; ?>
+			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
-				<h1>What are we?</h1>
+				<span class="outsideShadow"><h1>What are we?</h1></span>
 				<div id="about">
 								<h2>Sit down.</h2> 
-								<h3>Grab a cold drink, focus your mind, and create something cool.</h3>
+								<h3>Grab a cold drink, focus your mind, and create something cool.</h3></span>
 								<hr/>
 								<span id="test">
 								<p>
@@ -29,4 +29,4 @@
 								</span>
 								</div><!--End Admin Area Div-->
 			</div> <!--End col2-->
-			<?php include "php/col3_footer.php"; ?>
+			<?php include "include/col3_footer.php"; ?>

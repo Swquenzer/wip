@@ -1,0 +1,28 @@
+UPDATE members SET last_seen=2013-10-30 16:07:35 WHERE email=jack@pandora.gov
+UPDATE members SET last_seen=2013-10-30 16:07:53 WHERE email=jack@pandora.gov
+UPDATE members SET last_seen='2013-10-30 16:12:50' WHERE email='jack@pandora.gov'
+UPDATE members SET last_seen='2013-10-30 16:14:29' WHERE email='jack@pandora.gov'
+INSERT INTO members (username, email, password, join_date, last_seen)
+										VALUES ('test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', '2013-10-30 16:24:56', '2013-10-30 16:24:56')
+2
+Array
+test@test.com
+2013-10-30 16:25:06
+2013-10-30 16:25:06
+2013-10-30 16:25:06
+2013-10-30 16:25:06
+2013-10-30 16:25:06
+2013-10-30 17:53:07
+2013-10-30 17:53:19
+2013-10-30 17:53:27
+2013-10-30 17:53:35
+
+
+2013-10-30 17:57:12
+2013-10-30 17:57:19
+[18:00:09]:2013-10-30 18:00:09
+[18:00:15]:2013-10-30 18:00:15
+[6:00 pm]:2013-10-30 18:00:58
+[1:04 pm]:2013-10-30 13:04:28
+[1:07 pm]:2013-10-30 13:07:00
+[1:07 pm]:2013-10-30 13:07:04
