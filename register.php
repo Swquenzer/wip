@@ -6,7 +6,6 @@
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
-			
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<?php
 					$continue = true;
@@ -68,7 +67,7 @@
 							$sourceDir = getcwd()."\\members\\".$_POST['username'];
 							$destFile = $sourceDir."\\workstation.php";
 							if(mkdir($sourceDir,0777) & copy(getcwd()."/member.php", $destFile)){
-								echo '<h1>Registered</h1>
+								echo '<span class="outsideShadow"><h1>Registered</h1></span>
 									 '.$destFile.'
 									  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
 									 ';
@@ -76,7 +75,7 @@
 						}
 					} else {
 					 echo '
-					 <h1>Register</h1>
+					<span class="outsideShadow"><h1>Register</h1></span>
 					 <p>
 					 ';
 					 ?>

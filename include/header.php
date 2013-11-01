@@ -19,11 +19,7 @@
 		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
-		dLog("about to go into cookieCheck");
 		if(cookieCheck($dbHandle)) {
-			dLog("username: ".$username." password: ".$pass);
-			//$username = $_COOKIE['ID_my_site'];
-			//$pass = $_COOKIE['Key_my_site'];
 			$check = mysqli_query($dbHandle,"Select * FROM members
 								   WHERE username = '".$username."'");
 			while($info = mysqli_fetch_array($check)) {

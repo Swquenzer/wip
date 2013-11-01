@@ -18,7 +18,32 @@
 	}
 </style>
 </head>
-<?php include 'include/nav.php'; ?>
+<?php 
+	include 'include/nav.php';
+	if(isset($_POST["submit"])) {
+		//Determine if visibility is private (0) or public (otherwise)
+		if($POST_['visibility']=='public') {
+		$vis = 1; 
+		} else { 
+		$vis = 0; 
+		}
+		//Get member ID
+		$queryMemID = "SELECT id FROM members WHERE username='".$username."'";
+		$qReturn = mysqli_query($dbHandle,$queryMemID);
+		$idArray = mysqli_fetch_array($qReturn);
+		dLog($idArray[0]);
+		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
+					VALUES (".$idArray[0].",'".$_POST["portName"]."','".$_POST["portDescription"]."','".$current."',".$vis.")";
+		if(!mysqli_query($dbHandle,$insert)) {
+			dLog("Query did not execute correctly");
+		}
+		if(isset($_POST[newProject])) {
+			
+		}
+		header("Location: ".$clientRootDir."members/".$username."/workstation.php");
+	}	
+ ?>
+
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span class="outsideShadow"><h1>Portfolio Form</h1></span>

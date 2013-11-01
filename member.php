@@ -21,7 +21,7 @@
 								header("Location: ../../login.php");
 							} else { ?>
 								<div id="adminArea">
-								<span class="outsideShadow"><h2>Admin Area</h2></span>
+								<h2>Admin Area</h2>
 								<h3>Create new portfolio</h3>
 								<p>
 									<a href="../../newportfolio.php">Click here to create a new portfolio!</a>
