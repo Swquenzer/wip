@@ -17,7 +17,8 @@ body {
 	display: block;
 	overflow: auto;
 	margin: auto;
-	width: 1012px;
+	max-width: 1012px;
+	min-width: 700px;
 }
 #header h1 {
 	display: block;
@@ -367,13 +368,16 @@ hr {
 .hBold {
 	display: block;
 	padding: 5px;
-	background: #E6D89E; 
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-weight: 400;
+	background: #E6D89E;
 }
 a:link .hBold, a:visited .hBold {
-	text-decoration: none;
 	background: #E6D89E; 
 }
 a:hover .hBold, a:active .hBold {
-	text-decoration: none !important;
 	background: #E6E19E;
 }
+.noUnder {
+		text-decoration: none !important;
+	}
