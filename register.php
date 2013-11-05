@@ -3,6 +3,12 @@
 	}
  ?>
 <!-- Put any page-specific head elements here -->
+<style>
+	#registered {
+		text-align: center;
+		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	}
+</style>
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
@@ -67,7 +73,7 @@
 							$sourceDir = getcwd()."\\members\\".$_POST['username'];
 							$destFile = $sourceDir."\\workstation.php";
 							if(mkdir($sourceDir,0777) & copy(getcwd()."/member.php", $destFile)){
-								echo '<span class="outsideShadow"><h1>Registered</h1></span>
+								echo '<span class="outsideShadow"><h1 id="registered">Registered</h1></span>
 									 '.$destFile.'
 									  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
 									 ';
