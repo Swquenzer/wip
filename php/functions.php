@@ -77,5 +77,15 @@ function getPortList($handle, $user) {
 	$qResults = mysqli_query($handle, $query);
 	return $qResults;
 }
+function getPortInfo($handle, $user, $port) {
+	$query = 	"SELECT portfolio.* FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
+	$qResults = mysqli_query($handle, $query);
+	while($row = mysqli_fetch_array($qResults, MYSQLI_NUM)) {
+		if(str_replace(" ", "", $row[2]) == $port) {
+			dLog($port);
+			return $row;
+		}
+	}
+}
 ?>
 
