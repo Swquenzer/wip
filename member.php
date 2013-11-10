@@ -1,6 +1,27 @@
 <?php include '../../include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <link rel="stylesheet" type="text/css" media="all" href="../../css/members.css">
+<style>
+	#newProj {
+		margin: auto;
+		width: 75%;
+		background: #C4D9FF;
+		-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+		border-radius: 6px;
+		border-left: 2px solid #698BC9;
+		border-right: 2px solid #698BC9;
+	}
+	a:link #newProj, a:visited #newProj {
+	background: #A6BFED; 
+}
+	a:hover #newProj, a:active #newProj {
+	background: #C4D9FF;
+}
+	#currentPorts {
+		list-style-type: square;
+	}
+</style>
 </head>
 <?php include '../../include/nav.php'; ?>
 		<div id="pageContent">
@@ -21,13 +42,16 @@
 								header("Location: ../../login.php");
 							} else { ?>
 								<div id="adminArea">
-								<a href="../../newportfolio.php">
+								<a class="noUnder" href="../../newportfolio.php">
 									<h3 class="hBold">Create new portfolio</h3>
 								</a>
 								<h3>List of current portfolios</h3>
-								<ol id="currentPorts">
-								</ol>
+								<ul id="currentPorts">
+								</ul>
 								<h3>List of recent projects</h3>
+								<a class="noUnder" href="../../newportfolio.php">
+									<h3 class="hBold" id="newProj">Start a new project</h3>
+								</a>
 								<ol>
 									<li>Dynamically-generated list item 1</li>
 									<li>Dynamically-generated list item 2</li>
