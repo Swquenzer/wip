@@ -75,8 +75,11 @@
 						while($row = mysqli_fetch_array($portResult,MYSQLI_NUM)) {
 							echo "
 									var portName = '".$row[0]."';
+									var portNameCollapse = portName.replace(/\s+/g, '');
 									var li = document.createElement('li');
-									li.innerHTML = portName;
+									var a = document.createElement('a');
+									a.innerHTML = portName;
+									li.innerHTML = '<a href=\''+(portNameCollapse)+'.php\'>'+(a.innerHTML)+'</a>';
 									currentPortsUL.appendChild(li);
 								 ";
 						}
