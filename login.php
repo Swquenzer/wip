@@ -20,13 +20,13 @@
 							$query = "SELECT * 
 									  FROM members
 									  WHERE email = '".$_POST['email']."'";
-							$check = mysqli_query($dbHandle,$query); //Error handling
+							$qResult = $dbHandle->query($query); //Error handling
 							//If email doesn't exist
-							$check2 = mysqli_num_rows($check);
-							if($check2 == 0 & $continue == true) {
+							$numRows = $qResult->num_rows;
+							if($numRows == 0 & $continue) {
 								errors("logEmailNull",$continue);
 							}
-							while($continue & $info = mysqli_fetch_array($check)) {
+							while($continue & $info = $qResult->fetch_array()) {
 								$_POST['pass'] = stripslashes($_POST['pass']);
 								$info['password'] = stripslashes($info['password']);
 								$_POST['pass'] = md5($_POST['pass']);
@@ -36,8 +36,8 @@
 								} elseif ($continue == true) {
 									//Get username from user with correct email
 									$query = "SELECT username FROM members WHERE email='".$_POST['email']."'";
-									$getUsernameResult = mysqli_query($dbHandle,$query);
-									$usernameArray = mysqli_fetch_array($getUsernameResult);
+									$getUsernameResult = $dbHandle->query($query); //Error Handling
+									$usernameArray = $getUsernameResult->fetch_array();
 									//If login ok, add cookie
 									$hour = time() + 3600;
 									setcookie('ID_my_site', $usernameArray[0], $hour);

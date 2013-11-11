@@ -17,12 +17,11 @@
 	<?php
 		//Connect to database
 		include SERVER_ROOT_DIR.'/include/db_connect.php';
-		mysqli_select_db($dbHandle, "wip"); //Error Handling
 		//Check cookies for login info
 		if(cookieCheck($dbHandle)) {
-			$result = mysqli_query($dbHandle,"Select * FROM members
-								   WHERE username = '".$username."'");
-			while($info = mysqli_fetch_array($result)) {
+			$getUserQuery = "Select * FROM members WHERE username = '".$username."'";
+			$result = $dbHandle->query($getUserQuery);
+			while($info = $result->fetch_array()) {
 				if ($pass != $info['password']) {
 					echo '
 						<script type="text/javascript">
@@ -34,7 +33,9 @@
 				} else {
 					//Update "last_seen" in db
 					$query = "UPDATE members SET last_seen='".$current."' WHERE username='".$username."'";
-					mysqli_query($dbHandle,$query); //Error Handling
+					if(!$dbHandle->query($query)) {
+						printf("Error executing query: %s\n",$dbHandle->error);
+					}
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -45,6 +46,7 @@
 						 ';
 				}
 			}
+			$result->close();
 		} else {
 			$cookie = false;
 			echo '
@@ -67,6 +69,5 @@
 		<!--<link rel="icon" type="image/x-icon" href="'.$clientRootDir.'favicon.ico">-->
 		<link href="http://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet" type="text/css">
 	';
-	
 	?>
 	

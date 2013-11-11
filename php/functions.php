@@ -52,18 +52,19 @@ function dLog($message) {
 	file_put_contents($log, $contents);
 }
 //If user is logged in (a cookie is set), return true
-function cookieCheck($dbHandle) { 
-	mysqli_select_db($dbHandle, "wip"); //Error Handling
+function cookieCheck($dbHandle) {
+	require SERVER_ROOT_DIR . '/include/db_connect.php';
 	if(isset($_COOKIE['ID_my_site'])) {
 		global $cookie,$username,$pass;
 		$cookie = true;
 		$username = $_COOKIE['ID_my_site'];
 		$pass = $_COOKIE['Key_my_site'];
-		$check = mysqli_query($dbHandle,   "SELECT * FROM members
-											WHERE username = '$username'")
-				or dLog("Query Error"); //Proper error handling
-		while($info = mysqli_fetch_array($check)) {
-			if($pass != $info['password']) { 
+		if(!($check = $dbHandle->query("SELECT * FROM members WHERE username = '$username'"))) {
+			printf("An error occured while processing query: %s\n",$dbHandle->error);
+		}
+		while($info = $check->fetch_array()) {
+			$check->free();
+			if($pass != $info['password']) {
 				return false;
 			} else {
 				return true;
@@ -73,16 +74,16 @@ function cookieCheck($dbHandle) {
 	return false;
 }
 function getPortList($handle, $user) {
-	$query = 	"SELECT portfolio.name FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
-	$qResults = mysqli_query($handle, $query);
+	$query = "SELECT portfolio.name FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
+	$qResults = $handle->query($query); //Error Handling
 	return $qResults;
 }
 function getPortInfo($handle, $user, $port) {
-	$query = 	"SELECT portfolio.* FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
-	$qResults = mysqli_query($handle, $query);
-	while($row = mysqli_fetch_array($qResults, MYSQLI_NUM)) {
+	$query = "SELECT portfolio.* FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
+	$qResults = $handle->query($query); //Error Handling
+	while($row = $qResults->fetch_array(MYSQLI_NUM)) {
 		if(str_replace(" ", "", $row[2]) == $port) {
-			dLog($port);
+			$qResults->free();
 			return $row;
 		}
 	}

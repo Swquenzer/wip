@@ -1,5 +1,5 @@
 <?php if(!include 'include/header.php') {
-		throw new Exception("Failed to load header.php");
+		//throw new Exception("Failed to load header.php"); //Error Handling (redirect to error page)
 	}
  ?>
 <!-- Put any page-specific head elements here -->
@@ -16,11 +16,7 @@
 				<?php
 					$continue = true;
 					### Connect to DB ###
-					include "include/db_connect.php"; 
-					if(!mysqli_select_db($dbHandle, "wip")) {
-						echo "Could not connect to database";
-					}
-
+					//include "include/db_connect.php";
 					if(isset($_POST['submit'])) {
 						### Form submitted, run code ##
 						//only matters if magic quotes are enabled
@@ -29,24 +25,25 @@
 						}
 						###Verify that email is unique
 						$emailCheck = $_POST['email'];
-						$check = mysqli_query($dbHandle, "SELECT email
-												FROM members
-												WHERE email='$emailCheck'")
+						$check = $dbHandle->query("SELECT email
+												   FROM members
+												   WHERE email='$emailCheck'")
 											or errors("queryUnsuccessful",$continue);
-						$check2 = mysqli_num_rows($check);
+						$numRows = $check->num_rows;
+						$check->free();
 						//if name already exists
-						if ($check2 != 0 & $continue==true) {
+						if ($numRows != 0 & $continue==true) {
 							errors("regUsernameInUse",$continue); //need email error message
 						}
 						###Verify that username is unique
 						$userCheck = $_POST['username'];
-						$check = mysqli_query($dbHandle, "SELECT username
-												FROM members
-												WHERE username='$userCheck'")
+						$check = $dbHandle->query("SELECT username
+												   FROM members
+												   WHERE username='$userCheck'")
 											or errors("queryUnsuccessful",$continue);
-						$check2 = mysqli_num_rows($check);
+						$numRows = $check->num_rows;
 						//if name already exists
-						if ($check2 != 0 & $continue==true) {
+						if ($numRows != 0 & $continue==true) {
 							errors("regUsernameInUse",$continue); //need username error message
 						}
 						###Check that passwords match
@@ -66,8 +63,8 @@
 							#Note: $current holds current time in SQL DATETIME format (initialized in header.php)
 							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
 										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
-							if(!mysqli_query($dbHandle,$insert)) {
-								echo "Query did not work correctly";
+							if(!$dbHandle->query($insert)) {
+								printf("Error executing query: %s\n",$dbHandle->error());
 							}
 							###Create Member Page
 							$sourceDir = getcwd()."\\members\\".$_POST['username'];

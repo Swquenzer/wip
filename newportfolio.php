@@ -22,19 +22,20 @@
 	include 'include/nav.php';
 	if(isset($_POST["submit"])) {
 		//Determine if visibility is private (0) or public (otherwise)
-		if($POST_['visibility']=='public') {
+		if($_POST['visibility']=='public') {
 		$vis = 1; 
 		} else { 
 		$vis = 0; 
 		}
 		//Get member ID
-		$queryMemID = "SELECT id FROM members WHERE username='".$username."'";
-		$qReturn = mysqli_query($dbHandle,$queryMemID);
-		$idArray = mysqli_fetch_array($qReturn);
+		$query = "SELECT id FROM members WHERE username='".$username."'";
+		$qReturn = $dbHandle->query($query);
+		$idArray = $qReturn->fetch_array();
+		$qReturn->free();
 		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
 					VALUES (".$idArray[0].",'".$_POST["portName"]."','".$_POST["portDescription"]."','".$current."',".$vis.")";
-		if(!mysqli_query($dbHandle,$insert)) {
-			dLog("Query did not execute correctly");
+		if(!$dbHandle->query($insert)) {
+			printf("Error processing query: %s\n", $dbHandle->error());
 		}
 		if(isset($_POST[newProject])) {
 			//display project creation form

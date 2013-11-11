@@ -30,14 +30,13 @@
 				<?php
 					//Connect to database
 					include '../../include/db_connect.php';
-					mysqli_select_db($dbHandle, "wip") or die(mysqli_error());
 					//Check cookies for login info
 					if(isset($_COOKIE['ID_my_site'])) {
 						$username = $_COOKIE['ID_my_site'];
 						$pass = $_COOKIE['Key_my_site'];
-						$check = mysqli_query($dbHandle,"Select * FROM members
-											   WHERE username = '".$username."'");
-						while($info = mysqli_fetch_array($check)) {
+						$query = "Select * FROM members WHERE username = '".$username."'";
+						$qResult = $dbHandle->query($query);
+						while($info = $qResult->fetch_result()) {
 							if ($pass != $info['password']) {
 								header("Location: ../../login.php");
 							} else { ?>
@@ -71,8 +70,7 @@
 					var currentPortsUL = document.getElementById("currentPorts");
 					<?php 
 						$portResult = getPortList($dbHandle,$username);
-						//$row = mysqli_fetch_array($portResult,MYSQLI_NUM);
-						while($row = mysqli_fetch_array($portResult,MYSQLI_NUM)) {
+						while($row = $portResult->fetch_array(MYSQLI_NUM)) {
 							echo "
 									var portName = '".$row[0]."';
 									var portNameCollapse = portName.replace(/\s+/g, '');
@@ -83,6 +81,7 @@
 									currentPortsUL.appendChild(li);
 								 ";
 						}
+						$portResult->free();
 					?>
 			</script>
 			<?php include "../../include/col3_footer.php"; ?>
