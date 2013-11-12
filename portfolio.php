@@ -1,12 +1,12 @@
-<?php include '../../include/header.php'; ?>
+<?php require '../../include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <?php 
 	$portURLName = basename($_SERVER['PHP_SELF'],".php");
 	$portInfo = getPortInfo($dbHandle, $username, $portURLName);
-	$portName = $portInfo[2];
-	$portDescription = $portInfo[3];
-	$portCreateDate = $portInfo[4];
-	$portVisibility = $portInfo[5]; #0 for public, 1 for private
+	$portName = $portInfo['name'];
+	$portDescription = $portInfo['description'];
+	$portCreateDate = $portInfo['creation_date'];
+	$portVisibility = $portInfo['public']; #1 for public, 0 for private
  ?>
 </head>
 <?php include '../../include/nav.php'; ?>

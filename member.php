@@ -36,7 +36,7 @@
 						$pass = $_COOKIE['Key_my_site'];
 						$query = "Select * FROM members WHERE username = '".$username."'";
 						$qResult = $dbHandle->query($query);
-						while($info = $qResult->fetch_result()) {
+						while($info = $qResult->fetch_array(MSQLI_ASSOC)) {
 							if ($pass != $info['password']) {
 								header("Location: ../../login.php");
 							} else { ?>

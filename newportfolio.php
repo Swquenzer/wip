@@ -30,12 +30,12 @@
 		//Get member ID
 		$query = "SELECT id FROM members WHERE username='".$username."'";
 		$qReturn = $dbHandle->query($query);
-		$idArray = $qReturn->fetch_array();
+		$idArray = $qReturn->fetch_array(MYSQL_NUM);
 		$qReturn->free();
 		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
 					VALUES (".$idArray[0].",'".$_POST["portName"]."','".$_POST["portDescription"]."','".$current."',".$vis.")";
 		if(!$dbHandle->query($insert)) {
-			printf("Error processing query: %s\n", $dbHandle->error());
+			printf("Error processing query: %s\n", $dbHandle->error);
 		}
 		if(isset($_POST[newProject])) {
 			//display project creation form
