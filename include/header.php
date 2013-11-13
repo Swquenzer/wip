@@ -19,10 +19,13 @@
 		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		//Check cookies for login info
 		if(cookieCheck($dbHandle)) {
-			$getUserQuery = "Select * FROM members WHERE username = '".$username."'";
-			$result = $dbHandle->query($getUserQuery);
-			while($info = $result->fetch_array()) {
-				if ($pass != $info['password']) {
+			$getUserQuery = $dbHandle->prepare("Select * FROM members WHERE username = ?");
+			$getUserQuery->bind_param('s',$username);
+			$getUserQuery->execute();
+			$result = $getUserQuery->get_result();
+			$getUserQuery->close();
+			while($row = $result->fetch_array()) {
+				if ($pass != $row['password']) {
 					echo '
 						<script type="text/javascript">
 							window.onload = function(){
@@ -32,8 +35,9 @@
 						 ';
 				} else {
 					//Update "last_seen" in db
-					$query = "UPDATE members SET last_seen='".$current."' WHERE username='".$username."'";
-					if(!$dbHandle->query($query)) {
+					$query = $dbHandle->prepare("UPDATE members SET last_seen=? WHERE username=?");
+					$query->bind_param('ss', $current, $username);
+					if(!$query->execute()) {
 						printf("Error executing query: %s\n",$dbHandle->error);
 					}
 					echo '
@@ -46,7 +50,7 @@
 						 ';
 				}
 			}
-			$result->close();
+			$query->close();
 		} else {
 			$cookie = false;
 			echo '

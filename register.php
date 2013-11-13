@@ -26,27 +26,29 @@
 							$_POST['username'] = addslashes($_POST['username']);
 						}
 						###Verify that email is unique
-						$emailCheck = $_POST['email'];
-						$check = $dbHandle->query("SELECT email
-												   FROM members
-												   WHERE email='$emailCheck'")
-											or errors("queryUnsuccessful",$continue);
-						$numRows = $check->num_rows;
-						$check->free();
+						$dbCheck = $_POST['email'];
+						$check = $dbHandle->prepare("SELECT (?) FROM members WHERE ?=(?)");
+						$check->bind_param('sss', $select, $select, $dbCheck);
+						$select = "email";
+						$check->execute();
+						$result = $check->get_result();
+						$numRows = $result->num_rows;
 						//if name already exists
 						if ($numRows != 0 & $continue==true) {
 							errors("regUsernameInUse",$continue); //need email error message
+							$contine=false;
 						}
 						###Verify that username is unique
-						$userCheck = $_POST['username'];
-						$check = $dbHandle->query("SELECT username
-												   FROM members
-												   WHERE username='$userCheck'")
-											or errors("queryUnsuccessful",$continue);
-						$numRows = $check->num_rows;
+						$dbCheck = $_POST['username'];
+						$select = "username";
+						$check->execute();
+						$result = $check->get_result();
+						$check->close();
+						$numRows = $result->num_rows;
 						//if name already exists
 						if ($numRows != 0 & $continue==true) {
 							errors("regUsernameInUse",$continue); //need username error message
+							$continue=false;
 						}
 						###Check that passwords match
 						if ($_POST['pass'] != $_POST['pass2'] & $continue==true) {
@@ -66,14 +68,13 @@
 							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
 										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
 							if(!$dbHandle->query($insert)) {
-								printf("Error executing query: %s\n",$dbHandle->error());
+								printf("Error executing query: %s\n",$dbHandle->error);
 							}
 							###Create Member Page
 							$sourceDir = getcwd()."\\members\\".$_POST['username'];
 							$destFile = $sourceDir."\\workstation.php";
 							if(mkdir($sourceDir,0777) & copy(getcwd()."/member.php", $destFile)){
 								echo '<span class="outsideShadow"><h1>Registered</h1></span>
-									 '.$destFile.'
 									  <p id="registered">Thank you for registering, you may now <a href="login.php">login</a>.</p>
 									 ';
 							}
