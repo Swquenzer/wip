@@ -82,7 +82,7 @@ function getPortInfo($handle, $user, $port) {
 	$query = "SELECT portfolio.* FROM portfolio LEFT JOIN members ON portfolio.member_id=members.id WHERE members.username='".$user."'";
 	$qResults = $handle->query($query); //Error Handling
 	while($row = $qResults->fetch_array(MYSQLI_ASSOC)) {
-		if(str_replace(" ", "", $row['name']) == $port) {
+		if(str_replace(" ", "", strtolower($row['name'])) == $port) {
 			$qResults->free();
 			return $row;
 		}

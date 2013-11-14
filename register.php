@@ -7,7 +7,7 @@
 	#registered {
 		text-align: center;
 		display: block;
-		margin: auto;
+		margin: 10px;
 		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 	}
 </style>
@@ -65,9 +65,12 @@
 						//Insert information into database
 						if ($continue==true) {
 							#Note: $current holds current time in SQL DATETIME format (initialized in header.php)
-							$insert =  "INSERT INTO members (username, email, password, join_date, last_seen)
-										VALUES ('" . $_POST['username'] . "', '" . $_POST['email'] . "', '" . $_POST['pass'] . "', '". $current ."', '". $current . "')";
-							if(!$dbHandle->query($insert)) {
+							$insert =  $dbHandle->prepare("INSERT INTO members (username, email, password, join_date, last_seen) VALUES (?,?,?,?,?)");
+							$insert->bind_param('sssss', $user, $mail, $pass, $current, $current);
+							$user = $_POST['username'];
+							$mail = $_POST['email'];
+							$pass = $_POST['pass'];
+							if(!$insert->execute()) {
 								printf("Error executing query: %s\n",$dbHandle->error);
 							}
 							###Create Member Page

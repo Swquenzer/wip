@@ -1,7 +1,6 @@
 <?php require '../../include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <?php 
-	$portURLName = basename($_SERVER['PHP_SELF'],".php");
 	$portInfo = getPortInfo($dbHandle, $username, $portURLName);
 	$portName = $portInfo['name'];
 	$portDescription = $portInfo['description'];

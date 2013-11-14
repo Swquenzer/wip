@@ -28,21 +28,26 @@
 		$vis = 0; 
 		}
 		//Get member ID
-		$query = "SELECT id FROM members WHERE username='".$username."'";
-		$qReturn = $dbHandle->query($query);
-		$idArray = $qReturn->fetch_array(MYSQL_NUM);
-		$qReturn->free();
+		$query = "SELECT id FROM members WHERE username=?";
+		$qPrepare = $dbHandle->prepare($query);
+		$qPrepare->bind_param('s',$username);
+		$qPrepare->execute();
+		$idArray = $qPrepare->get_result();
+		$result = $idArray->fetch_array(MYSQL_NUM);
+		$qPrepare->close();
 		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
-					VALUES (".$idArray[0].",'".$_POST["portName"]."','".$_POST["portDescription"]."','".$current."',".$vis.")";
-		if(!$dbHandle->query($insert)) {
+					VALUES (?,?,?,?,?)";
+		$qPrepare = $dbHandle->prepare($insert);
+		$qPrepare->bind_param('sssss', $result[0], $_POST["portName"], $_POST["portDescription"], $current, $vis);
+		if(!$qPrepare->execute()) {
 			printf("Error processing query: %s\n", $dbHandle->error);
 		}
-		if(isset($_POST[newProject])) {
+		if(isset($_POST['newProject'])) {
 			//display project creation form
 		}
 		//Create new portfolio page for user_error
 		$portName = str_replace( ' ', '', $_POST['portName']);
-		dLog("Portfolio name for URL: " . $portName);
+		$portName = strtolower($portName);
 		$sourceDir = getcwd()."\\members\\".$username;
 		$destFile = $sourceDir."\\".$portName.".php";
 		if(mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){

@@ -34,8 +34,11 @@
 					if(isset($_COOKIE['ID_my_site'])) {
 						$username = $_COOKIE['ID_my_site'];
 						$pass = $_COOKIE['Key_my_site'];
-						$query = "Select * FROM members WHERE username = '".$username."'";
-						$qResult = $dbHandle->query($query);
+						$query = $dbHandle->prepare("Select * FROM members WHERE username = ?");
+						$query->bind_param('s', $username);
+						$query->execute();
+						$qResult = $query->get_result();
+						$query->close();
 						while($info = $qResult->fetch_array(MYSQLI_ASSOC)) {
 							if ($pass != $info['password']) {
 								header("Location: ../../login.php");
@@ -74,6 +77,7 @@
 							echo "
 									var portName = '".$row[0]."';
 									var portNameCollapse = portName.replace(/\s+/g, '');
+									portNameCollapse = portNameCollapse.toLowerCase();
 									var li = document.createElement('li');
 									var a = document.createElement('a');
 									a.innerHTML = portName;

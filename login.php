@@ -17,16 +17,16 @@
 								errors("emptyForm",$continue);
 							}
 							### Check against database
-							$query = "SELECT * 
-									  FROM members
-									  WHERE email = '".$_POST['email']."'";
-							$qResult = $dbHandle->query($query); //Error handling
+							$query = $dbHandle->prepare("SELECT * FROM members WHERE email = ?");
+							$query->bind_param('s', $_POST['email']);
+							$query->execute(); //Error handling
+							$result = $query->get_result();
 							//If email doesn't exist
-							$numRows = $qResult->num_rows;
+							$numRows = $result->num_rows;
 							if($numRows == 0 & $continue) {
 								errors("logEmailNull",$continue);
 							}
-							while($continue & $info = $qResult->fetch_array()) {
+							while($continue & $info = $result->fetch_assoc()) {
 								$_POST['pass'] = stripslashes($_POST['pass']);
 								$info['password'] = stripslashes($info['password']);
 								$_POST['pass'] = md5($_POST['pass']);
@@ -35,8 +35,10 @@
 									errors("wrongPass",$continue);
 								} elseif ($continue == true) {
 									//Get username from user with correct email
-									$query = "SELECT username FROM members WHERE email='".$_POST['email']."'";
-									$getUsernameResult = $dbHandle->query($query); //Error Handling
+									$query = $dbHandle->prepare("SELECT username FROM members WHERE email=?");
+									$query->bind_param('s', $_POST['email']);
+									$query->execute();
+									$getUsernameResult = $query->get_result();
 									$usernameArray = $getUsernameResult->fetch_array();
 									//If login ok, add cookie
 									$hour = time() + 3600;
