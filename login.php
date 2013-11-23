@@ -24,15 +24,15 @@
 							//If email doesn't exist
 							$numRows = $result->num_rows;
 							if($numRows == 0 & $continue) {
+								//No matching email in db
 								errors("logEmailNull",$continue);
 							}
 							while($continue & $info = $result->fetch_assoc()) {
-								$_POST['pass'] = stripslashes($_POST['pass']);
+								//$_POST['pass'] = stripslashes($_POST['pass']);
 								$info['password'] = stripslashes($info['password']);
-								$_POST['pass'] = md5($_POST['pass']);
 								//if password is wrong
-								if($_POST['pass'] != $info['password'] & $continue == true) {
-									errors("wrongPass",$continue);
+								if(!verifyPass($_POST['pass'], $info['password']) & $continue == true) {
+									dLog("Password doesn't pass");
 								} elseif ($continue == true) {
 									//Get username from user with correct email
 									$query = $dbHandle->prepare("SELECT username FROM members WHERE email=?");
@@ -42,8 +42,9 @@
 									$usernameArray = $getUsernameResult->fetch_array();
 									//If login ok, add cookie
 									$hour = time() + 3600;
+									//dLog("info['password']: " . $info['password']);
 									setcookie('ID_my_site', $usernameArray[0], $hour);
-									setcookie('Key_my_site', $_POST['pass'], $hour);
+									setcookie('Key_my_site', $info['password'], $hour);
 									//redirect to members area
 									header("Location: ".$clientRootDir."members/".$usernameArray[0]."/workstation.php");
 								}

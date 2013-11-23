@@ -51,6 +51,22 @@ function dLog($message) {
 	$contents.= "[".date("g:i a")."]:" .$message . "\r\n";
 	file_put_contents($log, $contents);
 }
+//Generate a hash using blowfish for salt
+function generateHash($password) {
+	$salt = mcrypt_create_iv(22, MCRYPT_DEV_URANDOM);
+	$salt = base64_encode($salt);
+	$salt = str_replace('+','.', $salt);
+	$salt = "$2y$10$".$salt."$";
+	$password = crypt($password, $salt);
+	return $password;
+}
+//Verify password
+function verifyPass($userPass, $hashedPass) {
+	if (crypt($userPass, $hashedPass)== $hashedPass) {
+		return true;
+	}
+	return false;
+}
 //If user is logged in (a cookie is set), return true
 function cookieCheck($dbHandle) {
 	require SERVER_ROOT_DIR . '/include/db_connect.php';

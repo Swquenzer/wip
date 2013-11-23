@@ -18,48 +18,33 @@
 		//Connect to database
 		include SERVER_ROOT_DIR.'/include/db_connect.php';
 		//Check cookies for login info
-		if(cookieCheck($dbHandle)) {
-			$getUserQuery = $dbHandle->prepare("Select * FROM members WHERE username = ?");
-			$getUserQuery->bind_param('s',$username);
-			$getUserQuery->execute();
-			$result = $getUserQuery->get_result();
-			$getUserQuery->close();
-			while($row = $result->fetch_array()) {
-				if ($pass != $row['password']) {
-					echo '
-						<script type="text/javascript">
-							window.onload = function(){
-							document.getElementById(\'loginLinkA\').innerHTML="Login<br>(guest)";
-							};
-						</script>
-						 ';
-				} else {
-					//Update "last_seen" in db
-					$query = $dbHandle->prepare("UPDATE members SET last_seen=? WHERE username=?");
-					$query->bind_param('ss', $current, $username);
-					if(!$query->execute()) {
-						printf("Error executing query: %s\n",$dbHandle->error);
-					}
-					echo '
-						<script type="text/javascript">
-							window.onload = function(){
-							document.getElementById(\'loginLinkA\').innerHTML="Welcome, <br><h6>'.$username.'</h6>";
-							document.getElementById(\'loginLinkA\').href="'.$clientRootDir.'members/'.$username.'/workstation.php";
-							};
-						</script>
-						 ';
-				}
-			}
-			$query->close();
-		} else {
+		if(!cookieCheck($dbHandle)) {
 			$cookie = false;
+			dLog("in");
 			echo '
-						<script type="text/javascript">
-							window.onload = function(){
-								document.getElementById(\'loginLinkA\').innerHTML="Login<br><h6>(guest)</h6>";
-							};
-						</script>
-						 ';
+				<script type="text/javascript">
+					window.onload = function(){
+					document.getElementById(\'loginLinkA\').innerHTML="Login<br><h6>(guest)</h6>";
+					};
+				</script>
+				 ';
+		} else {
+			$cookie = true;
+			//Update "last_seen" in db
+			$query = $dbHandle->prepare("UPDATE members SET last_seen=? WHERE username=?");
+			$query->bind_param('ss', $current, $username);
+			if(!$query->execute()) {
+				printf("Error executing query: %s\n",$dbHandle->error);
+			}
+			echo '
+				<script type="text/javascript">
+					window.onload = function(){
+					document.getElementById(\'loginLinkA\').innerHTML="Welcome, <br><h6>'.$username.'</h6>";
+					document.getElementById(\'loginLinkA\').href="'.$clientRootDir.'members/'.$username.'/workstation.php";
+					};
+				</script>
+				 ';
+		//$query->close();
 		}
 	echo '
 

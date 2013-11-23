@@ -54,22 +54,15 @@
 						if ($_POST['pass'] != $_POST['pass2'] & $continue==true) {
 							errors("wrongPass",$continue);
 						}
-						//encrypt password 
-						$_POST['pass'] = md5($_POST['pass']);
-						//if magic quotes are enabled
-						if (!get_magic_quotes_gpc() & $continue==true) {
-							$_POST['pass'] = addslashes($_POST['pass']);
-							$_POST['username'] = addslashes($_POST['username']);
-							$_POST['email'] = addslashes($_POST['email']);
-						}
+						###Create password hash using salt with blowfish cipher and cost set to 10
+						$passHash = generateHash($_POST['pass']);
 						//Insert information into database
 						if ($continue==true) {
 							#Note: $current holds current time in SQL DATETIME format (initialized in header.php)
 							$insert =  $dbHandle->prepare("INSERT INTO members (username, email, password, join_date, last_seen) VALUES (?,?,?,?,?)");
-							$insert->bind_param('sssss', $user, $mail, $pass, $current, $current);
+							$insert->bind_param('sssss', $user, $mail, $passHash, $current, $current);
 							$user = $_POST['username'];
 							$mail = $_POST['email'];
-							$pass = $_POST['pass'];
 							if(!$insert->execute()) {
 								printf("Error executing query: %s\n",$dbHandle->error);
 							}
