@@ -16,48 +16,58 @@
 		position: relative;
 		top: 11px;
 	}
+	.errMsg {
+		margin-top: 5px;
+		width: 100%;
+	}
 </style>
 </head>
 <?php 
 	include 'include/nav.php';
 	if(isset($_POST["submit"])) {
-		//Determine if visibility is private (0) or public (otherwise)
-		if($_POST['visibility']=='public') {
-		$vis = 1; 
-		} else { 
-		$vis = 0; 
+		### Validate form
+		require 'php/validation.php';
+		$errors = portValidate($_POST['portName']);
+		### Process form
+		if(empty($errors)) {
+			### Determine if visibility is private (0) or public (otherwise)
+			if($_POST['visibility']=='public') {
+			$vis = 1; 
+			} else { 
+			$vis = 0; 
+			}
+			### Insert portfolio information into database
+			$query = "SELECT id FROM members WHERE username=?";
+			$qPrepare = $dbHandle->prepare($query);
+			$qPrepare->bind_param('s',$username);
+			$qPrepare->execute();
+			$idArray = $qPrepare->get_result();
+			$result = $idArray->fetch_array(MYSQL_NUM);
+			$qPrepare->close();
+			$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
+						VALUES (?,?,?,?,?)";
+			$qPrepare = $dbHandle->prepare($insert);
+			$qPrepare->bind_param('sssss', $result[0], $_POST["portName"], $_POST["portDescription"], $current, $vis);
+			if(!$qPrepare->execute()) {
+				printf("Error processing query: %s\n", $dbHandle->error);
+			}
+			if(isset($_POST['newProject'])) {
+				//display project creation form
+			}
+			//Create new portfolio page for user_error
+			$portName = str_replace( ' ', '', $_POST['portName']);
+			$portName = strtolower($portName);
+			$sourceDir = getcwd()."\\members\\".$username;
+			$destFile = $sourceDir."\\".$portName.".php";
+			if(mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){
+				echo '<span class="outsideShadow"><h1 id="registered">Portfolio Created</h1></span>
+					 '.$destFile.'
+					  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
+					 ';
+			}
+			//Redirect to member's page
+			header("Location: ".$clientRootDir."members/".$username."/".$portName.".php");
 		}
-		//Get member ID
-		$query = "SELECT id FROM members WHERE username=?";
-		$qPrepare = $dbHandle->prepare($query);
-		$qPrepare->bind_param('s',$username);
-		$qPrepare->execute();
-		$idArray = $qPrepare->get_result();
-		$result = $idArray->fetch_array(MYSQL_NUM);
-		$qPrepare->close();
-		$insert =  "INSERT INTO portfolio (member_id, name, description, creation_date, public)
-					VALUES (?,?,?,?,?)";
-		$qPrepare = $dbHandle->prepare($insert);
-		$qPrepare->bind_param('sssss', $result[0], $_POST["portName"], $_POST["portDescription"], $current, $vis);
-		if(!$qPrepare->execute()) {
-			printf("Error processing query: %s\n", $dbHandle->error);
-		}
-		if(isset($_POST['newProject'])) {
-			//display project creation form
-		}
-		//Create new portfolio page for user_error
-		$portName = str_replace( ' ', '', $_POST['portName']);
-		$portName = strtolower($portName);
-		$sourceDir = getcwd()."\\members\\".$username;
-		$destFile = $sourceDir."\\".$portName.".php";
-		if(mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){
-			echo '<span class="outsideShadow"><h1 id="registered">Portfolio Created</h1></span>
-				 '.$destFile.'
-				  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
-				 ';
-		}
-		//Redirect to member's page
-		header("Location: ".$clientRootDir."members/".$username."/".$portName.".php");
 	}	
  ?>
 
@@ -72,6 +82,11 @@
 								<p>
 									<label>Portfolio Name:</label>
 									<input type="text" name="portName" placeholder="Speed Drawing" maxlength="32" required="required" autofocus>
+									<?php 
+									if(isset($errors)) {
+										echo "<span class='errMsg'>*$errors</span>";
+									}
+									?>
 								</p>
 								<p>
 									<label>Description: (optional)</label> <br><br>

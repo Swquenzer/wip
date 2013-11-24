@@ -9,7 +9,7 @@
 //Error Handling
 //Created: May 16, 2013
 //Modified:
-function errors($errorType,&$continue) {
+function errors($errorType) {
 			$continue = false;
 			switch ($errorType) {
 				case "emptyForm":
@@ -49,6 +49,14 @@ function dLog($message) {
 	$contents = file_get_contents($log);
 	//Append new contents onto new line
 	$contents.= "[".date("g:i a")."]:" .$message . "\r\n";
+	file_put_contents($log, $contents);
+}
+function eLog($message) {
+	$log = "error_log.txt";
+	//get current file contents
+	$contents = file_get_contents($log);
+	//Append new contents onto new line
+	$contents .= "[".date("g:i a")."]:" .$message . "\r\n";
 	file_put_contents($log, $contents);
 }
 //Generate a hash using blowfish for salt

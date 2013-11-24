@@ -4,7 +4,7 @@
 		require 'include/db_connect.php';
 		$check = $dbHandle->prepare("SELECT (?) FROM members WHERE ?=(?)");
 		$check->bind_param('sss', $select, $select, $dbCheck);
-		###Verify that username is of correct form- alphanumeric or underscore, 4-16 characters
+		###Verify that username is of correct form: alphanumeric or underscore, 4-16 characters
 		if(!preg_match('/^\S[a-zA-Z0-9_]{4,16}$/', $_POST['username'])) {
 			$errors[] = "Username needs to be at least 4 characters long: letters, numbers, and underscores are accepted";        
 		}
@@ -41,6 +41,7 @@
 		}
 		return $errors;
 	}
+	
 	function loginValidate($email, $pass) {
 		global $errors;
 		require 'include/db_connect.php';
@@ -77,5 +78,13 @@
 				header("Location: ".$clientRootDir."members/".$usernameArray[0]."/workstation.php");
 			}
 		} //end while
+	}
+	
+	function portValidate($portName) {
+		###Verify that portfolio name is of correct form: alphanumeric or underscore chars
+		if(!preg_match('/^\S[a-zA-Z0-9_]$/', $portName)) {
+			$errors = "Portfolio names may only be made up of letters, numbers, and underscores";
+		}
+		return $errors;
 	}
 ?>

@@ -80,6 +80,8 @@ body {
 }
 /* ### End Navigation Bar ### */
 /* ### End Header ### */
+
+/* ### Main Page Content ### */
 #wrapper {
 	width: 980px;
 	position: relative;
@@ -389,4 +391,6 @@ a:hover .hBold, a:active .hBold {
 	color: red;
 	margin: auto;
 	padding: none;
+	font-family: 'Oswald', sans-serif;
+	font-size: 13px;
 }
