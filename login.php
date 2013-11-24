@@ -1,59 +1,35 @@
 <?php include 'include/header.php'; ?>
 <!-- Put any page-specific head elements here -->
 <link rel="stylesheet" type="text/css" media="all" href="css/login.css">
+<style>
+	.errMsg {
+		text-align: center;
+		margin-bottom: 5px;
+	}
+</style>
 </head>
 <?php include 'include/nav.php'; ?>
 		<div id="pageContent">
 			<div id="colMain"> <!-- ### MAIN CONTENT ### -->
 				<span class="outsideShadow"><h1>Login</h1></span>
 						<?php 
-						$continue = true;
 						//If user already logged in, redirect to member's page
 						if($cookie) {
 							header("Location: members/".$username."/workstation.php");
 						}
-						if(isset($_POST['submit']) & $continue == true) {
-							if(!$_POST['email'] | !$_POST['pass'] & $continue == true) {
-								errors("emptyForm",$continue);
-							}
-							### Check against database
-							$query = $dbHandle->prepare("SELECT * FROM members WHERE email = ?");
-							$query->bind_param('s', $_POST['email']);
-							$query->execute(); //Error handling
-							$result = $query->get_result();
-							//If email doesn't exist
-							$numRows = $result->num_rows;
-							if($numRows == 0 & $continue) {
-								//No matching email in db
-								errors("logEmailNull",$continue);
-							}
-							while($continue & $info = $result->fetch_assoc()) {
-								//$_POST['pass'] = stripslashes($_POST['pass']);
-								$info['password'] = stripslashes($info['password']);
-								//if password is wrong
-								if(!verifyPass($_POST['pass'], $info['password']) & $continue == true) {
-									dLog("Password doesn't pass");
-								} elseif ($continue == true) {
-									//Get username from user with correct email
-									$query = $dbHandle->prepare("SELECT username FROM members WHERE email=?");
-									$query->bind_param('s', $_POST['email']);
-									$query->execute();
-									$getUsernameResult = $query->get_result();
-									$usernameArray = $getUsernameResult->fetch_array();
-									//If login ok, add cookie
-									$hour = time() + 3600;
-									//dLog("info['password']: " . $info['password']);
-									setcookie('ID_my_site', $usernameArray[0], $hour);
-									setcookie('Key_my_site', $info['password'], $hour);
-									//redirect to members area
-									header("Location: ".$clientRootDir."members/".$usernameArray[0]."/workstation.php");
-								}
-							} //end while
+						if(isset($_POST['submit'])) {
+							require 'php/validation.php';
+							$errors = loginValidate($_POST['email'], $_POST['pass']);
 						} //end if
 						?>
 						<form id="globalForm" name="login" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 							<fieldset>
 								<div id="globalFormContainer">
+									<?php
+										if(!empty($errors)) {
+											echo "<span class='errMsg'>*$errors</span>";
+										}
+									?>
 									<p>
 									<label>Email Address:</label>
 									<input type="text" name="email" placeholder="Your Email Address" maxlength="32" required="required" autofocus>

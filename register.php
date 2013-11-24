@@ -48,7 +48,7 @@
 						<span class="outsideShadow"><h1>Register</h1></span>
 						';
 						 ?>
-						 <form id="globalForm" onsubmit="return validateForm();" name="register" action=
+						 <form id="globalForm" name="register" action=
 													<?php echo htmlentities($_SERVER['PHP_SELF']); ?>
 													" method="post">
 							<fieldset>
@@ -70,17 +70,19 @@
 										<input type="password" name="pass2" maxlength="32" required="required">
 									</p>
 									<input type="submit" name="submit" value="Register">
+								<?php
+									if(!empty($errors)) {
+										echo "<span class='errMsg'><ul>";
+										foreach($errors as $e) {
+											echo "<li>$e</li>";
+										}
+										echo "</ul></span>";
+									}
+								?>
 								</div>
 							</fieldset>
 						</form>
 						 <?php
-						if(!empty($errors)) {
-							echo "<span class='errMsg'><ul>";
-							foreach($errors as $e) {
-								echo "<li>$e</li>";
-							}
-							echo "</ul></span>";
-						}
 					}
 					?> 
 				</p>
