@@ -20,7 +20,6 @@
 		//Check cookies for login info
 		if(!cookieCheck($dbHandle)) {
 			$cookie = false;
-			dLog("in");
 			echo '
 				<script type="text/javascript">
 					window.onload = function(){

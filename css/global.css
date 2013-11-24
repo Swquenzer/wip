@@ -210,10 +210,13 @@ body {
 /* Global Form Styles */
 #globalForm form {
 	display: block;
+	margin: 0;
+	padding: 0;
 }
 #globalForm fieldset {
 	width: 90%;
 	margin: 30px auto;
+	margin-bottom: 0;
 	padding: 10px;
 
 	border: 1px solid #D1D1D1;
@@ -380,4 +383,11 @@ a:hover .hBold, a:active .hBold {
 }
 .noUnder {
 	text-decoration: none !important;
+}
+.errMsg {
+	display: block;
+	width: 90%;
+	color: red;
+	margin: auto;
+	padding: none;
 }
