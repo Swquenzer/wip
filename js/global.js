@@ -1,10 +1,6 @@
 //Validate Forms
 window.onload = function() {
-	$("#newProject").change(function() {
-		$("#newProj").load("newproject.html", function() {
-			alert("errorrrr");
-		});
-	});
+	newPortProj();
 };
 
 function guestLink() {
@@ -53,4 +49,10 @@ function validateForm() {
 		return false;
 	}
 	return true;
+}
+function newPortProj() {
+	$("#newProject").change(function() {
+		$("#newProj").load("newproject.html", function() {
+		});
+	});
 }

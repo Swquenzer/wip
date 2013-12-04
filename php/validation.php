@@ -82,7 +82,8 @@
 	
 	function portValidate($portName) {
 		###Verify that portfolio name is of correct form: alphanumeric or underscore chars
-		if(!preg_match('/^\S[a-zA-Z0-9_]$/', $portName)) {
+		//include 'functions.php';
+		if(!preg_match('/^[a-zA-Z0-9_ ]+$/', $portName)) {
 			$errors = "Portfolio names may only be made up of letters, numbers, and underscores";
 		}
 		return $errors;

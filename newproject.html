@@ -1,0 +1,27 @@
+<form id="globalForm" name="newProject" action="">
+						<fieldset>
+							<div id="globalFormContainer">
+								<p>
+									<label>Project Name:</label>
+									<input type="text" name="projName" placeholder="Alien Creature" maxlength="32" required="required" autofocus>
+								</p>
+								<p>
+									<label>Description: (optional)</label> <br><br>
+									<textarea cols="60" rows="5" name="portDescription" placeholder="What type of portfolio will this be?"></textarea>
+								</p>
+								<p>
+								<label> Visibility:</label> <br><br>
+										<input type="radio" name="visibility" value="public" checked="checked">
+										Public <br>
+										<input type="radio" name="visibility" value="private">
+										Private
+								</p>
+								<p>
+									<label>Initialize portfolio with new project: </label>
+									<input type="checkbox" name="newProject" id="newProject" value="newProject" onblur="displayProjectForm()">
+								</p>
+								<br>
+								<input type="submit" id="portSubmit" name="submit" value="Create Portfolio">
+							</div>
+						</fieldset>
+					</form>

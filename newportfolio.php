@@ -101,8 +101,10 @@
 								</p>
 								<p>
 									<label>Initialize portfolio with new project: </label>
-									<input type="checkbox" name="newProject" value="newProject" onblur="displayProjectForm()">
+									<input type="checkbox" name="newProject" id="newProject" value="newProject" >
 								</p>
+								<span id="newProj">
+								</span>
 								<br>
 								<input type="submit" id="portSubmit" name="submit" value="Create Portfolio">
 							</div>
