@@ -60,10 +60,11 @@
 			$sourceDir = getcwd()."\\members\\".$username;
 			$destFile = $sourceDir."\\".$portName.".php";
 			if(mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){
-				echo '<span class="outsideShadow"><h1 id="registered">Portfolio Created</h1></span>
-					 '.$destFile.'
+				echo <<<HTML
+					<span class="outsideShadow"><h1 id="registered">Portfolio Created</h1></span>
+					 $destFile
 					  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
-					 ';
+HTML;
 			}
 			//Redirect to member's page
 			header("Location: ".$clientRootDir."members/".$username."/".$portName.".php");
