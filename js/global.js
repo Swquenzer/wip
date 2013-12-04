@@ -7,11 +7,13 @@ function guestLink() {
 	var login = document.getElementById('loginLinkA');
 	login.innerHTML="Login<br><h6>(guest)</h6>";
 }
+
 function memberLink(username, root) {
 	var login = document.getElementById('loginLinkA');
 	login.innerHTML="Welcome, <br><h6>" + username + "</h6>";
 	login.href= root + "members/" + username + "/workstation.php";
 }
+
 function validAsterisk(i) {
 	if(typeof(i)==='undefined') i=0; //If no argument is passed for i, i=0 by default
 	var label = document.getElementsByTagName('label')[i].innerHTML;
@@ -24,6 +26,7 @@ function validAsterisk(i) {
 		document.getElementsByTagName('label')[i].appendChild(validAsterisk);
 	}
 }
+
 function validateForm() {
 	/* If any inputs have not been filled out ********************************************************/
 	var inputs = document.getElementsByTagName('input');
@@ -50,9 +53,17 @@ function validateForm() {
 	}
 	return true;
 }
+
 function newPortProj() {
-	$("#newProject").change(function() {
-		$("#newProj").load("newproject.html", function() {
-		});
+	var portSubmit = document.getElementById("portSubmit");
+	$("#newProjectCheck").change(function() {
+		if(this.checked) {
+			$("#newProj").load("newproject.html", function() {
+				portSubmit.value="Create Portfolio and Project";
+			});
+		} else {
+			$("#newProj").empty();
+			portSubmit.value="Create Portfolio";
+		}
 	});
 }

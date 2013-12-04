@@ -93,7 +93,7 @@
 									<textarea cols="60" rows="5" name="portDescription" placeholder="What type of portfolio will this be?"></textarea>
 								</p>
 								<p>
-								<label> Visibility:</label> <br><br>
+								<label>Portfolio Visibility:</label> <br><br>
 										<input type="radio" name="visibility" value="public" checked="checked">
 										Public <br>
 										<input type="radio" name="visibility" value="private">
@@ -101,7 +101,7 @@
 								</p>
 								<p>
 									<label>Initialize portfolio with new project: </label>
-									<input type="checkbox" name="newProject" id="newProject" value="newProject" >
+									<input type="checkbox" name="newProject" id="newProjectCheck" value="newProject" >
 								</p>
 								<span id="newProj">
 								</span>
