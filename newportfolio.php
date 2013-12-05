@@ -52,19 +52,15 @@
 				printf("Error processing query: %s\n", $dbHandle->error);
 			}
 			if(isset($_POST['newProject'])) {
-				//display project creation form
+				#Deal with project form
 			}
-			//Create new portfolio page for user_error
+			//Create new portfolio page 
 			$portName = str_replace( ' ', '', $_POST['portName']);
 			$portName = strtolower($portName);
 			$sourceDir = getcwd()."\\members\\".$username;
 			$destFile = $sourceDir."\\".$portName.".php";
-			if(mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){
-				echo <<<HTML
-					<span class="outsideShadow"><h1 id="registered">Portfolio Created</h1></span>
-					 $destFile
-					  <p>Thank you for registering, you may now <a href="login.php">login</a>.</p>
-HTML;
+			if(!mkdir($sourceDir,0777) & copy(getcwd()."/portfolio.php", $destFile)){
+				printf("Error processing new porfolio page");
 			}
 			//Redirect to member's page
 			header("Location: ".$clientRootDir."members/".$username."/".$portName.".php");

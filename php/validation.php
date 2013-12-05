@@ -68,6 +68,7 @@
 				$query->bind_param('s', $email);
 				$query->execute();
 				$getUsernameResult = $query->get_result();
+				$query->close();
 				$usernameArray = $getUsernameResult->fetch_array();
 				//If login ok, add cookie
 				$hour = time() + 3600;
@@ -86,6 +87,15 @@
 		if(!preg_match('/^[a-zA-Z0-9_ ]+$/', $portName)) {
 			$errors = "Portfolio names may only be made up of letters, numbers, and underscores";
 		}
+		require 'include/db_connect.php';
+		$query = $dbHandle->prepare("SELECT * FROM portfolio WHERE name=?");
+		$query->bind_param('s', $portName);
+		$query->execute();
+		$result = $query->get_result();
+		if(($result->num_rows) > 0) {
+			$errors = "You already created a portfolio with that name!";
+		}
+		$query->close();
 		return $errors;
 	}
 ?>
