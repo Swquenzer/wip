@@ -1,0 +1,12 @@
+-Error Handling everywhere
+-Add referrel field to registration form (optional)
+-Create Admin Tools for auto-update
+-Create New Project page form (somewhat complete)
+-Create Project page
+-Allow deletion of portfolios and projects ***
+-Create public side of members page (public profile) XX
+-Public side for portfolio pages
+-Public side for workstation pages
+-Create Admin Interface (me)
+-Create Member interface
+-Create Public interface
